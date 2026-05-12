@@ -125,7 +125,7 @@ const EatsPage: React.FC<{ navigate: (view: string, category?: string, id?: stri
 
         <div className="max-w-4xl mx-auto text-center mb-6">
           <h2 className="text-3xl font-serif text-gold-200">Eats</h2>
-          <p className="text-gray-300 mt-2">Discover where Mpumalanga eats, celebrates, and connects. From smoky shisanyama to refined fine dining.</p>
+          <p className="text-gray-300 mt-2">Refined dining across Mpumalanga.</p>
           <div className="mt-4 flex justify-center gap-2">
             <button className="text-sm bg-black/60 px-3 py-1 rounded-full text-gray-200">Trending this week</button>
             <button className="text-sm bg-black/60 px-3 py-1 rounded-full text-gray-200">Elite Eats</button>

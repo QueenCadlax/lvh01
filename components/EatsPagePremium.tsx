@@ -202,10 +202,10 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
 
         {/* ALL RESTAURANTS */}
         <section>
-          <h2 className="text-2xl font-bold mb-6">All Restaurants <span className="text-sm text-gray-400">({filtered.length} results)</span></h2>
+          <h2 className="text-2xl font-bold mb-6">All Restaurants <span className="text-sm text-gray-400">({filtered.slice(0, 4).length} results)</span></h2>
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filtered.map(e => (
+              {filtered.slice(0, 4).map(e => (
                 <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
               ))}
             </div>

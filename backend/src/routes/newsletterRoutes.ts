@@ -1,10 +1,14 @@
 import { Router, Request, Response } from 'express';
 import { Pool } from 'pg';
+import sgMail from '@sendgrid/mail';
 import { authMiddleware, AuthRequest } from '../middleware/authMiddleware';
 import { isAdmin } from '../middleware/isAdmin';
 
 const router = Router();
 const pool = new Pool();
+
+// Initialize SendGrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
 // Subscribe to newsletter
 router.post('/subscribe', async (req: Request, res: Response) => {
@@ -32,9 +36,79 @@ router.post('/subscribe', async (req: Request, res: Response) => {
       [email.toLowerCase()]
     );
 
+    const subscriber = result.rows[0];
+    const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@lowveldhub.co.za';
+    const adminEmail = process.env.SENDGRID_ADMIN_EMAIL || 'info@lowveldhub.co.za';
+
+    // Send welcome email to subscriber
+    const userMessage = {
+      to: email,
+      from: fromEmail,
+      subject: 'Welcome to LowveldHub Newsletter! 🎉',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>Welcome to LowveldHub! 👋</h2>
+          <p>Thank you for subscribing to the LowveldHub newsletter!</p>
+          
+          <p>You'll now receive updates about:</p>
+          <ul>
+            <li>New premium listings in Mpumalanga</li>
+            <li>Featured business spotlights</li>
+            <li>Exclusive opportunities</li>
+            <li>LowveldHub updates and news</li>
+          </ul>
+          
+          <p>Best regards,<br/>
+          <strong>The LowveldHub Team ✨</strong></p>
+          
+          <hr style="border: 1px solid #ddd; margin: 20px 0;">
+          <p style="font-size: 12px; color: #666;">
+            Questions? Email: ${fromEmail}<br/>
+            <a href="http://localhost:3000">Visit LowveldHub</a>
+          </p>
+        </div>
+      `
+    };
+
+    // Send notification to admin
+    const adminMessage = {
+      to: adminEmail,
+      from: fromEmail,
+      subject: `New Newsletter Subscriber: ${email}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2>🎉 New Newsletter Subscriber</h2>
+          
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+          <p><strong>Subscriber ID:</strong> ${subscriber.id}</p>
+          
+          <hr style="border: 1px solid #ddd; margin: 20px 0;">
+          <p style="font-size: 12px; color: #666;">
+            This is an automated notification from LowveldHub Newsletter System
+          </p>
+        </div>
+      `
+    };
+
+    // Send emails
+    try {
+      await sgMail.send(userMessage);
+      console.log(`✅ Welcome email sent to ${email}`);
+    } catch (emailError) {
+      console.error(`⚠️ Failed to send welcome email to ${email}:`, emailError);
+    }
+
+    try {
+      await sgMail.send(adminMessage);
+      console.log(`✅ Admin notification sent to ${adminEmail}`);
+    } catch (emailError) {
+      console.error(`⚠️ Failed to send admin notification:`, emailError);
+    }
+
     res.json({ 
       success: true, 
-      data: result.rows[0],
+      data: subscriber,
       message: 'Subscribed to newsletter' 
     });
   } catch (error) {

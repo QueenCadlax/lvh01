@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Star,
   MapPin,
@@ -35,8 +35,8 @@ interface MockProfessional {
 }
 
 const LegalFinanceDetail: React.FC<LegalFinanceDetailProps> = ({ id, navigate, businesses }) => {
-  const [activeTab, setActiveTab] = React.useState('overview');
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Find the professional
   const professional = useMemo(() => {

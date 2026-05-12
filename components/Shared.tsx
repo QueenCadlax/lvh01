@@ -155,37 +155,37 @@ export const LuxuryCard: React.FC<{
           />
           
           {/* Top Right Corner Actions - Minimal */}
-          <div className="absolute top-4 right-4 flex gap-2 z-30">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex gap-2 z-30">
             <button 
               onClick={(e) => { e.stopPropagation(); if (onToggleFavorite && id) onToggleFavorite(id); }} 
-              className={`p-2.5 rounded-full transition-all duration-300 backdrop-blur-md ${isFavorite ? 'bg-black text-red-500 shadow-lg' : 'bg-white/80 text-gray-700 hover:bg-white'}`} 
+              className={`p-2 sm:p-2.5 rounded-full transition-all duration-300 backdrop-blur-md ${isFavorite ? 'bg-black text-red-500 shadow-lg' : 'bg-white/80 text-gray-700 hover:bg-white'}`} 
               title="Save"
             >
-              <Heart size={18} fill={isFavorite ? "currentColor" : "none"} />
+              <Heart size={16} fill={isFavorite ? "currentColor" : "none"} />
             </button>
             <button 
               onClick={handleShare} 
-              className="p-2.5 rounded-full bg-white/80 text-gray-700 hover:bg-white transition-all duration-300 backdrop-blur-md" 
+              className="p-2 sm:p-2.5 rounded-full bg-white/80 text-gray-700 hover:bg-white transition-all duration-300 backdrop-blur-md" 
               title="Share"
             >
-              <Share2 size={18} />
+              <Share2 size={16} />
             </button>
           </div>
 
           {/* Top Left Badges - Minimal */}
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-30">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-2 z-30">
             {isPlatinum && (
-              <span className="bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-full">
+              <span className="bg-black text-white text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full">
                 ⭐ Platinum
               </span>
             )}
             {isElite && !isPlatinum && (
-              <span className="bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-full">
+              <span className="bg-black text-white text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full">
                 ✨ Elite
               </span>
             )}
             {isTopRated && !isElite && !isPlatinum && (
-              <span className="bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded-full">
+              <span className="bg-black text-white text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full">
                 ⭐ Top Rated
               </span>
             )}
@@ -193,7 +193,7 @@ export const LuxuryCard: React.FC<{
 
           {/* Price Badge - Minimal Bottom Right */}
           {price && (
-            <div className="absolute bottom-4 right-4 bg-black text-white px-4 py-2 rounded-full font-semibold text-sm z-30">
+            <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-black text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm z-30">
               {price}
             </div>
           )}

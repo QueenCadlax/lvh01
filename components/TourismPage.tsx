@@ -33,8 +33,8 @@ export default function TourismPage({ navigate }: { navigate?: (view: string, su
       {/* HERO (no big image) */}
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div style={{ color: '#C9A24D', letterSpacing: 2 }} className="text-sm uppercase">TOURISM & EXPERIENCES</div>
-        <h1 className="mt-4 text-4xl lg:text-5xl font-serif leading-tight">Explore Mpumalanga, Curated for the Curious</h1>
-        <p className="mt-4 text-lg" style={{ color: '#CFCFCF' }}>Iconic landmarks, private adventures, cultural journeys and natural wonders — experienced the LowveldHub way.</p>
+        <h1 className="mt-4 text-4xl lg:text-5xl font-serif leading-tight">Curated Lowveld Escapes</h1>
+        <p className="mt-4 text-lg" style={{ color: '#CFCFCF' }}>Iconic destinations and curated experiences across Mpumalanga.</p>
 
         <div className="mt-8 flex gap-4 items-center">
           <button onClick={() => document.getElementById('featured')?.scrollIntoView({behavior:'smooth'})} className="px-6 py-3 rounded" style={{ border: '1px solid #C9A24D', color: '#C9A24D', background: 'transparent', fontWeight: 800 }}>Explore Experiences</button>

@@ -146,128 +146,99 @@ const HealthPage = ({ navigate }: { navigate: (view: string) => void }) => {
       color: '#fff',
       position: 'relative'
     }} className="min-h-screen">
-      {/* ===== HERO SECTION ===== */}
+      {/* Minimal Hero Section */}
       <section style={{ 
-        background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(26,26,26,0.8) 100%)',
-        paddingTop: 80,
-        paddingBottom: 30,
-        borderBottom: '1px solid rgba(201, 162, 77, 0.2)'
+        paddingTop: 48,
+        paddingBottom: 24,
+        borderBottom: '1px solid rgba(201, 162, 77, 0.1)'
       }}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl">
             {/* Main Heading */}
             <h1 style={{
-              fontSize: 'clamp(36px, 6vw, 64px)',
+              fontSize: 'clamp(40px, 6vw, 56px)',
               fontWeight: 400,
               color: '#fff',
-              marginBottom: 16,
+              marginBottom: 12,
               fontFamily: '"Playfair Display", "Georgia", serif',
-              letterSpacing: '-1px',
-              lineHeight: 1.2
+              letterSpacing: '-0.5px',
+              lineHeight: 1.2,
+              textTransform: 'uppercase'
             }}>
-              Find Trusted Doctors Near You
+              Healthcare
             </h1>
             
             {/* Gold Accent Line */}
             <div style={{
-              height: 1,
-              background: '#C9A24D',
+              height: 2,
+              background: 'linear-gradient(90deg, #C9A24D, #A0781B)',
               width: 60,
-              margin: '20px auto 24px',
+              margin: '12px 0 16px 0',
               opacity: 0.8
             }}></div>
 
-            {/* Subheading */}
+            {/* Short Subheading */}
             <p style={{
               fontSize: '18px',
               color: '#ccc',
-              marginBottom: 40,
+              marginBottom: 16,
               fontWeight: 300,
               letterSpacing: '0.3px'
             }}>
-              Verified medical professionals across Mpumalanga.
+              Trusted care, verified professionals.
             </p>
 
-            {/* Search Bar */}
-            <div style={{ position: 'relative', marginBottom: 20 }}>
-              <Search style={{
-                position: 'absolute',
-                left: 20,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: '#C9A24D',
-                width: 20,
-                height: 20
-              }} />
-              <input
-                type="text"
-                placeholder="Search by specialist, specialty, or location..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                  width: '100%',
-                  paddingLeft: 60,
-                  paddingRight: 20,
-                  paddingTop: 16,
-                  paddingBottom: 16,
-                  background: 'rgba(201, 162, 77, 0.05)',
-                  border: '1px solid rgba(201, 162, 77, 0.3)',
-                  borderRadius: 8,
-                  color: '#fff',
-                  fontSize: 16,
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 0 0 2px rgba(201, 162, 77, 0.15)'
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.borderColor = '#C9A24D';
-                  e.currentTarget.style.background = 'rgba(201, 162, 77, 0.1)';
-                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(201, 162, 77, 0.2)';
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201, 162, 77, 0.3)';
-                  e.currentTarget.style.background = 'rgba(201, 162, 77, 0.05)';
-                  e.currentTarget.style.boxShadow = '0 0 0 2px rgba(201, 162, 77, 0.15)';
-                }}
-              />
-            </div>
-
-            {/* Quick Filter Buttons */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {['General Practitioner', 'Cardiologist', 'Dentist', 'Specialist', 'Emergency'].map((btn) => (
-                <button
-                  key={btn}
-                  onClick={() => setSelectedSpecialty(btn)}
-                  style={{
-                    padding: '10px 20px',
-                    background: selectedSpecialty === btn ? '#C9A24D' : 'transparent',
-                    border: selectedSpecialty === btn ? 'none' : '1.5px solid #C9A24D',
-                    color: selectedSpecialty === btn ? '#000' : '#C9A24D',
-                    borderRadius: 24,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    letterSpacing: '0.3px'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (selectedSpecialty !== btn) {
-                      e.currentTarget.style.background = 'rgba(201, 162, 77, 0.1)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (selectedSpecialty !== btn) {
-                      e.currentTarget.style.background = 'transparent';
-                    }
-                  }}
-                >
-                  {btn}
-                </button>
-              ))}
+            {/* Badges - Inline */}
+            <div className="flex flex-wrap gap-2">
+              <span style={{ fontSize: '14px', color: '#C9A24D', fontWeight: 300 }}>
+                Verified • Curated • Exceptional
+              </span>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Compact Action Area - Search + Filters */}
+      <div className="container mx-auto px-6 py-12">
+        {/* Search Bar */}
+        <div className="mb-6 max-w-4xl mx-auto">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(201, 162, 77, 0.2)',
+            borderRadius: '9999px',
+            padding: '14px 20px'
+          }}>
+            <Search style={{ color: '#C9A24D', flexShrink: 0 }} size={20} />
+            <input
+              type="text"
+              placeholder="Search businesses, places, or experiences..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                flex: 1,
+                background: 'transparent',
+                border: 'none',
+                outline: 'none',
+                color: '#fff',
+                fontSize: '16px'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Filter Chips */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '24px' }}>
+          <span style={{ fontSize: '11px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Filter:</span>
+          <button style={{ padding: '10px 14px', background: 'rgba(201, 162, 77, 0.1)', border: '1px solid rgba(201, 162, 77, 0.4)', color: '#C9A24D', borderRadius: '9999px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>All</button>
+          <button style={{ padding: '10px 14px', background: 'rgba(0, 0, 0, 0.6)', border: '1px solid rgba(255, 255, 255, 0.1)', color: '#ccc', borderRadius: '9999px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>Featured</button>
+          <button style={{ padding: '10px 14px', background: 'rgba(0, 0, 0, 0.6)', border: '1px solid rgba(255, 255, 255, 0.1)', color: '#ccc', borderRadius: '9999px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>Nearby</button>
+          <button style={{ padding: '10px 14px', background: 'rgba(0, 0, 0, 0.6)', border: '1px solid rgba(255, 255, 255, 0.1)', color: '#ccc', borderRadius: '9999px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>Top Rated</button>
+        </div>
+      </div>
 
       {/* ===== BROWSE ALL PROVIDERS ===== */}
       <section style={{ paddingTop: 80, paddingBottom: 80 }}>

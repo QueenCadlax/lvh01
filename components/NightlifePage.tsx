@@ -81,42 +81,83 @@ const NightlifePage: React.FC<{ navigate: (view: string, category?: string, id?:
   }, []);
 
   return (
-    <div className="pt-24 pb-12 min-h-screen bg-gradient-to-b from-black via-black to-black/95">
-      <div className="container mx-auto px-6">
-        {/* Hero Section */}
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-serif text-gold-200 mb-4">NIGHTLIFE & ENTERTAINMENT IN MPUMALANGA</h1>
-          <p className="text-xl text-gray-300 mb-6">Experience the pulse of the Lowveld — elite nightlife, live entertainment, music venues and unforgettable after-dark experiences.</p>
-          
-          {/* Floating Search */}
-          <div className="relative max-w-3xl mx-auto">
-            <div className="absolute inset-x-0 -bottom-14 flex justify-center">
-              <div className="w-full max-w-3xl bg-black/70 backdrop-blur-md border border-white/10 rounded-full px-4 py-3 flex items-center gap-3 shadow-lg">
-                <Search className="text-gray-300" />
-                <input 
-                  value={searchTerm} 
-                  onChange={(e) => { setSearchTerm(e.target.value); setSuggestionsOpen(true); }} 
-                  onFocus={() => setSuggestionsOpen(true)} 
-                  placeholder="Search clubs, bars, events, artists or locations..." 
-                  className="bg-transparent outline-none flex-1 text-gray-200 placeholder-gray-400" 
-                />
-                <button className="text-sm text-gray-300">AI</button>
-              </div>
-            </div>
-            {suggestionsOpen && searchTerm.length > 0 && (
-              <div className="absolute left-1/2 -translate-x-1/2 mt-6 w-full max-w-3xl bg-black/80 border border-white/10 rounded-lg p-3 z-40">
-                <div className="text-sm text-gray-300 mb-2">Suggestions</div>
-                <div className="flex flex-wrap gap-2">
-                  {allSuggestions.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).slice(0,8).map(s => (
-                    <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full bg-black/60 text-gray-200 hover:bg-gold-500/20">{s}</button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+    <div className="pt-0 pb-12 min-h-screen bg-gradient-to-b from-black via-black to-black/95">
+      {/* Minimal Hero Section */}
+      <section className="relative py-12 overflow-hidden mb-12">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 -z-10">
+          <img 
+            src="https://images.unsplash.com/photo-1514432324607-2e467f4af445?auto=format&fit=crop&q=80&w=1600" 
+            alt="Nightlife" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90"></div>
         </div>
 
-        {/* Featured Nightlife & Entertainment Venues Section */}
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-3xl">
+            {/* Title */}
+            <h1 className="text-5xl md:text-6xl font-serif text-white uppercase tracking-tight mb-4">
+              Nightlife & Entertainment
+            </h1>
+            {/* Divider */}
+            <div className="h-0.5 w-24 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 rounded-full mb-6"></div>
+
+            {/* Short Subtitle */}
+            <p className="text-lg md:text-xl text-gray-200 font-light mb-6">
+              Where Mpumalanga comes alive after dark.
+            </p>
+
+            {/* Badges - Inline */}
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm text-gold-300 font-light">
+                Verified • Curated • Exceptional
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Compact Action Area - Search + Filters */}
+      <div className="container mx-auto px-6 mb-12">
+        {/* Search Bar */}
+        <div className="mb-6 max-w-4xl mx-auto">
+          <div className="bg-black/70 backdrop-blur-sm rounded-full p-4 border border-gold-500/20 flex items-center gap-3">
+            <Search className="text-gold-400 flex-shrink-0" size={20} />
+            <input 
+              value={searchTerm} 
+              onChange={(e) => { setSearchTerm(e.target.value); setSuggestionsOpen(true); }} 
+              onFocus={() => setSuggestionsOpen(true)} 
+              placeholder="Search businesses, places, or experiences..." 
+              className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-500 text-base"
+            />
+          </div>
+          {suggestionsOpen && searchTerm.length > 0 && (
+            <div className="mt-4 max-w-4xl mx-auto bg-black/80 border border-white/10 rounded-lg p-4 z-40">
+              <div className="text-sm text-gray-300 mb-3">Suggestions</div>
+              <div className="flex flex-wrap gap-2">
+                {allSuggestions.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 8).map(s => (
+                  <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full bg-black/60 text-gray-200 hover:bg-gold-500/20">
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Filter Chips */}
+        <div className="flex items-center gap-3 flex-wrap justify-center mb-6">
+          <span className="text-xs text-gray-400 uppercase tracking-wider">Filter:</span>
+          <button className="px-4 py-2 bg-gold-500/10 border border-gold-500/40 text-gold-300 rounded-full text-sm font-medium hover:border-gold-500 hover:bg-gold-500/20 transition">All</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Featured</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Nearby</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Top Rated</button>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6">
+        {/* Featured Section */}
         <div className="mb-12">
           <SectionTitle title="Featured Nightlife & Entertainment Venues" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
@@ -127,7 +168,7 @@ const NightlifePage: React.FC<{ navigate: (view: string, category?: string, id?:
         </div>
 
         {/* Primary Filter Bar */}
-        <div className="container mx-auto mb-8">
+        <div className="mb-8">
           <div className="flex items-center gap-3 flex-wrap">
             <div className="relative">
               <button 

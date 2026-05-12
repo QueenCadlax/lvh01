@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Business, Category, CategorySubcategories, MPUMALANGA_AREAS } from '../types';
 import categoryConfig from './categoryConfig';
 import SubcategoryCard from './SubcategoryCard';
-import { ChevronDown, Settings } from 'lucide-react';
+import { ChevronDown, Settings, Search } from 'lucide-react';
 
 interface Props {
   categoryName: string; // e.g., 'FOOD & HOSPITALITY'
@@ -540,142 +540,9 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
     ? 'Luxury wellness retreats and yoga centers - holistic wellness programs, spa treatments, yoga, and rejuvenation experiences.'
     : isHotelsLodges
     ? 'Luxury accommodations - 5-star hotels, boutique lodges, and premium stays with exceptional service across Mpumalanga.'
-    : 'Discover the most exclusive restaurants, curated for the discerning palate.', [flags]);
+    : 'Refined dining across Mpumalanga.', [flags]);
 
-  const heroSearchPlaceholder = useMemo(() => isShisa
-    ? 'Search shisanyama, braai spots, or locations...'
-    : isCasual
-    ? 'Search casual restaurants, cuisines, or locations...'
-    : isCafe
-    ? 'Search cafés, coffee shops, or locations...'
-    : isBars
-    ? 'Search bars, lounges, or locations...'
-    : isBakery
-    ? 'Search bakeries, patisseries, or desserts...'
-    : isFoodTruck
-    ? 'Search food trucks, street eats, or pop-ups...'
-    : isCatering
-    ? 'Search catering services, cuisines, or locations...'
-    : isHairSalons
-    ? 'Search hair salons, stylists, treatments or locations...'
-    : isBarberShops
-    ? 'Search barber shops, grooming, styles or locations...'
-    : isNailBeauty
-    ? 'Search nail studios, beauty treatments, lashes or locations...'
-    : isCosmeticSurgery
-    ? 'Search cosmetic surgeons, procedures, clinics or locations...'
-    : isNutritionists
-    ? 'Search nutritionists, dietitians, wellness programs or locations...'
-    : isSkincare
-    ? 'Search skincare clinics, treatments, facials, massages or locations...'
-    : isSpa
-    ? 'Search spas, massage therapists, wellness treatments or locations...'
-    : isHealth
-    ? 'Search doctors, clinics, pharmacies, or locations...'
-    : isEducation
-    ? 'Search schools, universities, colleges, tutors or locations...'
-    : isFamily
-    ? 'Search family services, childcare, play centres, churches or locations...'
-    : isRealEstate
-    ? 'Search properties, estate agents, locations or property types...'
-    : isPrivateDrivers
-    ? 'Search chauffeurs, private drivers, vip services or locations...'
-    : isAirportTransfers
-    ? 'Search airport transfers, meet & greet, shuttle services or locations...'
-    : isShuttleMinibus
-    ? 'Search shuttle services, minibus, group transport or locations...'
-    : isTourSightseeing
-    ? 'Search tours, sightseeing guides, experiences or locations...'
-    : isEVCharging
-    ? 'Search EV charging stations, fast chargers, locations...'
-    : isHelicopter
-    ? 'Search helicopter charters, scenic flights, aerial tours...'
-    : isTransport
-    ? 'Search freight, couriers, drivers, routes or locations...'
-    : isBeauty
-    ? 'Search salons, barbers, spas, treatments or locations...'
-    : isJobListings
-    ? 'Search jobs, positions, companies or locations...'
-    : isJobSeekerProfiles
-    ? 'Search talent, professionals, skills or locations...'
-    : isRecruitmentHRServices
-    ? 'Search recruitment, staffing, HR services or locations...'
-    : isInternshipsApprenticeships
-    ? 'Search internships, apprenticeships, programs or locations...'
-    : isCareerCoachingGuidance
-    ? 'Search career coaches, mentors, programs or locations...'
-    : isPremiumWineHouses
-    ? 'Search wines, vintages, collections or locations...'
-    : isCraftDistilleries
-    ? 'Search distilleries, breweries, crafted spirits or locations...'
-    : isLuxuryCocktailBars
-    ? 'Search cocktail bars, lounges, mixologists or locations...'
-    : isWineTastingExperiences
-    ? 'Search wine tastings, sommelier experiences, tours or locations...'
-    : isSpiritInvestment
-    ? 'Search investment spirits, collectors, vaults or locations...'
-    : isMunicipalServices
-    ? 'Search municipal services, licenses, permits or locations...'
-    : isLicensingAndRegistrations
-    ? 'Search licensing, registration services or locations...'
-    : isPublicHealthServices
-    ? 'Search public health clinics, services or locations...'
-    : isSoftwareDevelopment
-    ? 'Search software companies, developers or locations...'
-    : isWebAndDesignStudios
-    ? 'Search web designers, studios or locations...'
-    : isDigitalMarketingAgencies
-    ? 'Search digital marketing, SEO, agencies or locations...'
-    : isPhotographyAndVideography
-    ? 'Search photographers, videographers or locations...'
-    : isDronePhotographyVideography
-    ? 'Search drone services, aerial photography or locations...'
-    : isAppDevelopmentSoftwareHouses
-    ? 'Search app developers, software houses or locations...'
-    : isAiAndDataScienceServices
-    ? 'Search AI services, data science, ML or locations...'
-    : isGamingAndEsports
-    ? 'Search game studios, esports, gaming venues or locations...'
-    : isVirtualAugmentedRealityServices
-    ? 'Search VR, AR, XR experiences or locations...'
-    : isFamilyServices
-    ? 'Search childcare, tutoring, family services or locations...'
-    : isChildcareSchools
-    ? 'Search schools, universities, education providers or locations...'
-    : isHotelsLodges
-    ? 'Search hotels, lodges, accommodations or locations...'
-    : isSafarisGameReserves
-    ? 'Search game reserves, safaris, wildlife tours or locations...'
-    : isGolfAndCountryClubs
-    ? 'Search golf clubs, courses, country clubs or locations...'
-    : isPersonalStylingAndWardrobeConsultants
-    ? 'Search stylists, fashion consultants, wardrobe services or locations...'
-    : isBanksAndBranches
-    ? 'Search banks, financial institutions, branches or locations...'
-    : isInvestmentAndFinancialAdvisors
-    ? 'Search financial advisors, investment services or locations...'
-    : isBoutiquesAndFashion
-    ? 'Search boutiques, fashion, designers or locations...'
-    : isEstateAgents
-    ? 'Search real estate agents, properties, developments or locations...'
-    : isLuxuryHomesAndVillas
-    ? 'Search luxury homes, villas, estates or locations...'
-    : isLegalServices
-    ? 'Search law firms, attorneys, legal services or locations...'
-    : isAccountingAndTax
-    ? 'Search accountants, tax services, auditors or locations...'
-    : isConsultants
-    ? 'Search consultants, business advisors, consulting firms or locations...'
-    : isTechAndIT
-    ? 'Search IT services, tech companies, software or locations...'
-    : isClinicSpecialists
-    ? 'Search medical clinics, specialists, doctors or locations...'
-    : isDentists
-    ? 'Search dentists, dental clinics, treatments or locations...'
-    : isWellnessRetreats
-    ? 'Search wellness centers, yoga, spas, retreats or locations...'
-    : 'Search restaurants, cuisines, or locations...'
-  , [flags]);
+  const heroSearchPlaceholder = useMemo(() => 'Search businesses, places, or experiences...', []);
 
   const scrollFeatured = (dir: 'left' | 'right') => {
     if (!featuredRef.current) return;
@@ -686,25 +553,7 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
 
   return (
     <div className="bg-black min-h-screen text-white">
-      <header className="border-b border-white/5 py-3">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="text-sm font-bold text-gold-300">LH</div>
-            <div className="text-sm font-semibold">LOWVELDHUB</div>
-            <nav className="ml-6 flex gap-4 text-sm text-gray-300">
-              <button className="hover:text-white">Home</button>
-              <button className="hover:text-white">Directory</button>
-              <button className="hover:text-white">Marketplace</button>
-              <button className="hover:text-white">Stories</button>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="text-sm text-gray-300 hover:text-white">Login</button>
-            <button className="text-sm bg-gold-500 text-black px-3 py-1 rounded">Add Business</button>
-          </div>
-        </div>
-      </header>
-      <section className="relative py-12 md:py-28 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         {/* Dynamic Hero Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80 z-10"></div>
         <img 
@@ -730,78 +579,82 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
         />
         
         <div className="container mx-auto px-4 relative z-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-gold-400 font-serif uppercase text-sm md:text-base tracking-widest opacity-90">IN MPUMALANGA</div>
-            <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif text-white uppercase tracking-tight drop-shadow-lg">
-              {!hasSelectedSubcategory ? 'Premium ' + (categoryName || 'Experiences') : subCategoryName}
+          <div className="max-w-5xl mx-auto">
+            {/* Category Title */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white uppercase tracking-tight drop-shadow-lg mb-4">
+              {!hasSelectedSubcategory ? categoryName || 'Experiences' : subCategoryName}
             </h1>
-            <p className="mt-6 text-white/95 text-lg md:text-xl leading-relaxed drop-shadow-md max-w-2xl mx-auto">{heroTagline}</p>
-            
-            {/* Category-Specific Stats/Info */}
-            {!hasActiveFilters && (
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl md:text-3xl font-bold text-gold-400">4.7★</div>
-                  <div className="text-xs text-gold-200">Avg Rating</div>
-                </div>
-                <div className="h-10 w-px bg-gold-500/30"></div>
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl md:text-3xl font-bold text-gold-400">{elitePlatinumListings.length}+</div>
-                  <div className="text-xs text-gold-200">Premium Picks</div>
-                </div>
-                <div className="h-10 w-px bg-gold-500/30"></div>
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl md:text-3xl font-bold text-gold-400">🔥</div>
-                  <div className="text-xs text-gold-200">Trending Now</div>
-                </div>
-              </div>
-            )}
+            {/* Luxury Divider */}
+            <div className="h-0.5 w-24 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 rounded-full mb-6"></div>
 
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <button onClick={() => gridRef.current?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-3 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold shadow-lg hover:shadow-[0_20px_50px_rgba(227,185,44,0.3)] transition transform hover:scale-105">Explore Now</button>
-              <button className="px-8 py-3 rounded-lg border-2 border-gold-400 text-gold-300 font-semibold hover:bg-gold-400 hover:text-black transition">Filter Results</button>
+            {/* Single Short Subtitle */}
+            <p className="text-lg md:text-xl text-gray-200 font-light mb-6 max-w-2xl">
+              {heroTagline}
+            </p>
+
+            {/* Luxury Badges - Inline */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              <span className="text-sm text-gold-300 font-light">
+                Verified • Curated • Exceptional
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Hero Search + Horizontal Subcategories */}
-      <div className="container mx-auto px-4 -mt-6 relative z-20 mb-8">
-        <div className="bg-black/70 backdrop-blur-sm rounded-2xl p-4 border border-gold-500/10">
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={heroSearchPlaceholder} className="w-full p-3 rounded-lg bg-black/60 border border-gold-500/20 text-white placeholder-gray-400" />
+      {/* Compact Action Area - Search + Filter Chips */}
+      <div className="container mx-auto px-4 -mt-4 relative z-20 mb-12">
+        {/* Search Bar */}
+        <div className="mb-6 max-w-4xl mx-auto">
+          <div className="bg-black/70 backdrop-blur-sm rounded-full p-4 border border-gold-500/20 flex items-center gap-3">
+            <Search className="text-gold-400 flex-shrink-0" size={20} />
+            <input 
+              value={query} 
+              onChange={(e) => setQuery(e.target.value)} 
+              placeholder={heroSearchPlaceholder} 
+              className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-500 text-base" 
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Horizontal Subcategory Navigation (Landing Page Only) */}
-      {hasSelectedSubcategory === false && (
-        <div className="container mx-auto px-4 mb-8">
-          <div className="flex items-center gap-2 overflow-x-auto pb-3">
-            <span className="text-xs text-gray-400 uppercase tracking-wider flex-shrink-0">Explore:</span>
+        {/* Filter Chips */}
+        <div className="flex items-center gap-3 flex-wrap justify-center mb-6 max-w-4xl mx-auto">
+          <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Browse:</span>
+          <button className="px-4 py-2 bg-gold-500/10 border border-gold-500/40 text-gold-300 rounded-full text-sm font-medium hover:border-gold-500 hover:bg-gold-500/20 transition">All</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Featured</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Nearby</button>
+          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Top Rated</button>
+        </div>
+
+        {/* Category Tags */}
+        {hasSelectedSubcategory === false && (
+          <div className="flex items-center gap-2 overflow-x-auto pb-3 max-w-4xl mx-auto">
+            <span className="text-xs text-gray-400 uppercase tracking-wider flex-shrink-0">Categories:</span>
             {(() => {
               const preferred = config?.subcategories || [
-                'SHISANYAMA & BRAAI SPOTS',
-                'FINE DINING',
-                'CASUAL RESTAURANTS',
-                'CAFÉS & COFFEE SHOPS',
-                'BARS & COCKTAIL LOUNGES',
-                'CATERING SERVICES',
-                'BAKERIES & DESSERTS',
-                'FOOD TRUCKS & POP-UPS'
+                'Shisanyama & Braai',
+                'Fine Dining',
+                'Casual Restaurants',
+                'Cafés & Coffee Shops',
+                'Bars & Cocktail Lounges',
+                'Catering Services',
+                'Bakeries & Desserts',
+                'Food Trucks & Pop-ups'
               ];
               const related = categoryKey ? CategorySubcategories[categoryKey] || [] : [];
               const remaining = related.filter(r => !preferred.includes(r));
               const ordered = preferred.filter(p => related.includes(p)).concat(remaining);
               return ordered.map(s => (
-                <button key={s} onClick={() => onSelectSubcategory?.(s)} className="flex-shrink-0 px-4 py-2 bg-black border border-gold-500/30 text-gold-300 rounded-full text-xs font-medium hover:border-gold-500 hover:bg-gold-500/10 transition whitespace-nowrap">
+                <button key={s} onClick={() => onSelectSubcategory?.(s)} className="flex-shrink-0 px-3 py-2 bg-black border border-white/10 text-gray-300 rounded-full text-xs font-medium hover:border-gold-500 hover:text-gold-300 transition whitespace-nowrap">
                   {s}
                 </button>
               ));
             })()}
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      {/* Tier Highlight Section (Landing Page Only) */}
+      {/* Tier Highlight Section (Landing Page Only) - MOVED AFTER SEARCH */}
       {hasSelectedSubcategory === false && elitePlatinumListings.length > 0 && (
         <section className="container mx-auto px-4 mb-16">
           {/* PREMIUM SECTION HEADER */}
@@ -811,10 +664,10 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
             
             <div className="mb-4">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">
-                Featured Highlights
+                Editor's Picks
               </h2>
               <p className="text-sm md:text-base text-gray-400 max-w-2xl">
-                Discover our most exclusive and highly-rated luxury experiences
+                Exceptional places, thoughtfully curated
               </p>
             </div>
 
@@ -823,7 +676,7 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
           </div>
 
           {/* CARDS GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
             {elitePlatinumListings.map(item => {
               const isFoodCategory = categoryKey === Category.FoodAndHospitality || isShisa || isCasual || isCafe || isBars || isBakery || isFoodTruck || isCatering;
               const detailView = isFoodCategory ? 'eatery-detail' : 'business-detail';
@@ -843,68 +696,13 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
         </section>
       )}
 
-      {/* Collapsible Filter Bar */}
-      <div className="container mx-auto px-4 mb-8">
-        <button 
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-black/40 border border-gold-500/20 hover:border-gold-500/40 transition"
-        >
-          <div className="flex items-center gap-2 text-gold-300">
-            <Settings size={18} />
-            <span className="text-sm font-medium uppercase">Filters</span>
-          </div>
-          <ChevronDown size={18} className={`transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
-        </button>
-
-
-
-        {isFilterOpen && (
-          <div className="mt-2 p-4 rounded-lg bg-black/60 border border-gold-500/10 space-y-4 animate-in fade-in duration-300">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              <input 
-                type="text" 
-                placeholder="Search..." 
-                value={query} 
-                onChange={(e) => setQuery(e.target.value)} 
-                className="p-3 rounded bg-black/60 border border-gold-500/20 text-white placeholder-gray-400 text-sm" 
-              />
-              <select value={location} onChange={(e) => setLocation(e.target.value)} className="p-3 rounded bg-black/60 border border-gold-500/20 text-white text-sm">
-                <option>All Areas</option>
-                {MPUMALANGA_AREAS.map(area => (
-                  <option key={area}>{area}</option>
-                ))}
-              </select>
-              <select value={minRating} onChange={(e) => setMinRating(Number(e.target.value))} className="p-3 rounded bg-black/60 border border-gold-500/20 text-white text-sm">
-                <option value={0}>Any Rating</option>
-                <option value={3}>3★+</option>
-                <option value={4}>4★+</option>
-                <option value={4.5}>4.5★+</option>
-              </select>
-              <select value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)} className="p-2.5 rounded bg-black/60 border border-gold-500/20 text-white text-xs">
-                <option value="">Any Price</option>
-                <option value="$">R - Budget</option>
-                <option value="$$">R R - Moderate</option>
-                <option value="$$$">R R R - Premium</option>
-                <option value="$$$$">R R R R - Luxury</option>
-              </select>
-              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="p-2.5 rounded bg-black/60 border border-gold-500/20 text-white text-xs">
-                <option value="rating">Rating ↓</option>
-                <option value="newest">Newest</option>
-                <option value="price-asc">Price ↑</option>
-                <option value="price-desc">Price ↓</option>
-              </select>
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* OLD STICKY FILTER BAR - REMOVED */}
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col gap-8">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8">
+        <div className="flex flex-col gap-6 sm:gap-8">
 
-          {/* Full Width Grid - No Sidebar */}
-          <div ref={gridRef} className={isShisa || isCasual || isCafe || isBars || isCatering || isBakery || isFoodTruck || isFineDining || isHairSalons || isBarberShops || isNailBeauty || isCosmeticSurgery || isNutritionists || isSkincare || isSpa || isFreightHaulage || isLogisticsWarehouse || isCourierDelivery || isPrivateDrivers || isAirportTransfers || isShuttleMinibus || isTourSightseeing || isEVCharging || isHelicopter || isFamilyServices || isChildcareSchools || isCommunitycentre || isReligiouscentre || isPlaycentre || isAfterschool || isFamilyentertainment || isHotelsLodges || isGuestHousesBBs || isSafarisGameReserves || isTourOperatorsGuides || isScenicRoutesAdventure || isYachtBoatCharters || isPrivateJetAirCharter || isClinicSpecialists || isDentists || isPharmacies || isMentalHealthProfessionals || isWellnessRetreats || isVeterinaryClinics || isBuilders || isPlumbingElectrical || isRoofingRenovations || isInteriorDesigners || isLandscapingGardening || isSmartHome || isCustomFurniture || isPoolGarden || isLegalServices || isAccountingAndTax || isConsultants || isMarketingAndAdvertising || isTechAndIT || isArchitectsDesigners || isBusinessBrokersAdvisors || isLifeCoachesAndMentors || isTranslationAndLanguage || isPRAndMedia || isLuxuryEVDealerships || isCarHireAndRentals || isServiceAndRepairs || isCarDetailingAndMaintenance || isLimoAndExotic || isMotorcycleAndATV || isCropAndFarmSuppliers || isLivestockServices || isAgritechAndMachinery || isMiningSuppliers || isMiningEquipmentAndMachinery || isIndustrialToolsAndMachinery || isBarsAndCocktailLounges || isClubsAndLounges || isLiveMusicAndVenues || isTheatersAndCinemas || isGamingAndVRCenters || isDanceStudiosAndPerformances || isMusicLessonsAndTeachers || isConciergeServices || isExclusiveExperiences || isPersonalAssistants || isLuxuryClubsAndMemberships || isWineTastingAndVineyards || isGolfAndCountryClubs || isPersonalStylingAndWardrobeConsultants || isJobListings || isJobSeekerProfiles || isRecruitmentHRServices || isInternshipsApprenticeships || isCareerCoachingGuidance || isPremiumWineHouses || isCraftDistilleries || isLuxuryCocktailBars || isWineTastingExperiences || isSpiritInvestment || isSoftwareDevelopment || isWebAndDesignStudios || isDigitalMarketingAgencies || isPhotographyAndVideography || isDronePhotographyVideography || isAppDevelopmentSoftwareHouses || isAiAndDataScienceServices || isGamingAndEsports || isVirtualAugmentedRealityServices || isDefaultView ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-4" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6"}>
+          {/* Full Width Grid - Responsive 2-column mobile first */}
+          <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
             {visible.filter((b:any)=> b && b.category === categoryKey).map((b) => {
               const isFoodCategory = categoryKey === Category.FoodAndHospitality || isShisa || isCasual || isCafe || isBars || isBakery || isFoodTruck || isCatering;
               const detailView = isFoodCategory ? 'eatery-detail' : 'business-detail';
@@ -915,7 +713,7 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
 
           {visible.length < filtered.length && (
             <div className="mt-8 text-center">
-              <button onClick={() => setPage((p) => p + 1)} className="px-5 py-2 bg-gold-500/20 border border-gold-500/40 text-gold-300 text-sm font-semibold rounded hover:bg-gold-500/30 transition">Load more</button>
+              <button onClick={() => setPage((p) => p + 1)} className="px-6 py-3 bg-transparent border border-gold-500/40 text-gold-300 text-sm font-semibold rounded-lg hover:bg-gold-500/10 hover:border-gold-500 transition">View More</button>
             </div>
           )}
 

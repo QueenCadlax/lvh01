@@ -429,7 +429,7 @@ const ListingGridView = ({ title, items, type, favorites, toggleFavorite, naviga
       </section>
     )}
     
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
       {items.map((item: any) => (
         <div key={item.id} className="h-auto">
             <LuxuryCard 
@@ -894,7 +894,7 @@ const CarsView = ({ navigate, favorites, toggleFavorite, onChat, activeArea, set
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {filteredCars.map(car => (
+                            {filteredCars.slice(0, 4).map(car => (
                                 <div key={car.id}>
                                     <VehicleCard car={{
                                         id: car.id,
@@ -2084,7 +2084,6 @@ const Footer = ({ navigate, onLogin }: any) => {
                     <h4 className="text-white font-bold text-[11px] uppercase tracking-[0.15em] mb-8 text-gold-400">Explore</h4>
                     <ul className="space-y-3 text-sm text-gray-500">
                         <li><button onClick={() => navigate('directory')} className="hover:text-gold-400 transition-colors duration-300">Directory</button></li>
-                        <li><button onClick={() => navigate('marketplace')} className="hover:text-gold-400 transition-colors duration-300">Marketplace</button></li>
                         <li><button onClick={() => navigate('real-estate')} className="hover:text-gold-400 transition-colors duration-300">Real Estate</button></li>
                         <li><button onClick={() => navigate('cars')} className="hover:text-gold-400 transition-colors duration-300">Automotive</button></li>
                         <li><button onClick={() => navigate('stays')} className="hover:text-gold-400 transition-colors duration-300">Hospitality</button></li>
@@ -2095,7 +2094,6 @@ const Footer = ({ navigate, onLogin }: any) => {
                     <h4 className="text-white font-bold text-[11px] uppercase tracking-[0.15em] mb-8 text-gold-400">Platform</h4>
                     <ul className="space-y-3 text-sm text-gray-500">
                         <li><button onClick={() => navigate('list-your-business')} className="hover:text-gold-400 transition-colors duration-300">Add Listing</button></li>
-                        <li><button onClick={() => navigate('add-product')} className="hover:text-gold-400 transition-colors duration-300">Sell on Marketplace</button></li>
                         <li><button onClick={() => navigate('contact-us')} className="hover:text-gold-400 transition-colors duration-300">Contact Us</button></li>
 
                         <li><button onClick={() => navigate('about')} className="hover:text-gold-400 transition-colors duration-300">About Us</button></li>
@@ -2349,7 +2347,7 @@ const DirectoryView = ({ navigate, favorites, toggleFavorite, businesses, initia
                             <div className="flex items-center gap-3 mb-6">
                                 <h3 className="text-white font-bold uppercase tracking-[0.08em] text-sm">Explore Categories</h3>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 will-change-auto">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 will-change-auto">
                                 {categories.map((cat, idx) => (
                                     <CategoryCard
                                         key={idx}
@@ -2365,25 +2363,121 @@ const DirectoryView = ({ navigate, favorites, toggleFavorite, businesses, initia
                 </div>
             )}
 
-            {/* Category Page: show subcategory cards only */}
+            {/* Category Page: show hero + subcategory cards */}
             {activeCategory !== 'All' && activeSub === 'All' && (
                 <div className="mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-3 h-3 rounded-full bg-gold-500 shadow-lg" />
-                        <h3 className="text-white font-bold uppercase tracking-[0.1em] text-sm">Explore Categories</h3>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {(CategorySubcategories[activeCategory as Category] || []).map((sub: string) => (
-                            <button key={sub} onClick={() => { setActiveSub(sub); setActiveFilters(null); }} className="group bg-white/[0.02] border border-white/10 rounded-2xl p-6 text-left hover:shadow-[0_10px_30px_-10px_rgba(227,185,44,0.25)] transition-all">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-lg bg-black/60 flex items-center justify-center text-gold-400"><Tag size={18} /></div>
-                                    <div>
-                                        <div className="text-lg font-semibold text-white">{sub}</div>
-                                        <div className="text-sm text-gray-400 mt-1">Find top {sub.toLowerCase()} in Mpumalanga</div>
+                    {/* LUXURY CATEGORY HERO */}
+                    <div className="mb-16 py-24 px-8 md:px-12 rounded-3xl relative overflow-hidden bg-gradient-to-br from-black/40 to-black/20 border border-white/8" style={{ background: 'linear-gradient(to bottom right, rgba(0,0,0,0.4), rgba(0,0,0,0.2))' }}>
+                        {/* Subtle background grid */}
+                        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+                        
+                        {/* Content Grid: Left Text, Right Image */}
+                        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto items-center">
+                            {/* LEFT: Text Content */}
+                            <div className="space-y-6">
+                                {/* Category Title */}
+                                <div>
+                                    <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight leading-tight">
+                                        {activeCategory}
+                                    </h1>
+                                    {/* Luxury Divider */}
+                                    <div className="h-0.5 w-20 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 rounded-full"></div>
+                                </div>
+
+                                {/* Dynamic Subtitle */}
+                                <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed">
+                                    {
+                                        {
+                                            'FOOD & HOSPITALITY': 'Refined dining experiences across Mpumalanga.',
+                                            'TOURISM, TRAVEL & HOSPITALITY': 'Curated escapes and unforgettable Lowveld experiences.',
+                                            'NIGHTLIFE & ENTERTAINMENT': 'Where Mpumalanga comes alive after dark.',
+                                            'HEALTHCARE & MEDICAL PROFESSIONALS': 'Trusted care from verified medical professionals.',
+                                            'BEAUTY, PERSONAL & WELLNESS': 'Luxury wellness and beauty experiences.',
+                                            'AUTOMOTIVE & DEALERSHIPS': 'Premium automotive services and trusted dealerships.',
+                                            'REAL ESTATE & PROPERTY': 'Exclusive properties and trusted real estate professionals.',
+                                            'EDUCATION & INSTITUTIONS': 'Verified institutions shaping future excellence.',
+                                            'PROFESSIONAL SERVICES & CONSULTING': 'Expert guidance from verified professionals.',
+                                            'RETAIL & SHOPPING': 'Curated retail experiences and local craftsmanship.',
+                                            'SPORTS, RECREATION & LEISURE': 'Premium activities and unforgettable adventures.',
+                                            'FINANCE & MONEY SERVICES': 'Trusted financial expertise and solutions.',
+                                        }[activeCategory as any] || `Discover curated ${(activeCategory || '').toLowerCase()} across Mpumalanga.`
+                                    }
+                                </p>
+
+                                {/* Supporting Paragraph */}
+                                <p className="text-gray-400 text-base leading-relaxed max-w-lg">
+                                    Discover verified {activeCategory.toLowerCase().replace(/\s&\s/g, ' & ')} carefully curated for discerning locals and travellers seeking authentic excellence.
+                                </p>
+
+                                {/* Luxury Badges */}
+                                <div className="flex flex-wrap gap-3 pt-4">
+                                    {['Verified', 'Curated', 'Exceptional'].map((badge) => (
+                                        <div key={badge} className="px-4 py-2 rounded-full bg-white/[0.05] border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">
+                                            {badge}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* CTA Button */}
+                                <div className="pt-6">
+                                    <button onClick={() => setActiveSub(CategorySubcategories[activeCategory as Category]?.[0] || 'All')} className="px-8 py-4 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-gold-500/30">
+                                        Explore Collection
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* RIGHT: Premium Image */}
+                            <div className="hidden md:block relative h-80">
+                                <div className="absolute inset-0 rounded-2xl overflow-hidden border border-gold-500/20">
+                                    <img
+                                        src={
+                                            {
+                                                'FOOD & HOSPITALITY': 'https://images.unsplash.com/photo-1504674900152-b8b29e94345e?w=600&h=600&fit=crop',
+                                                'TOURISM, TRAVEL & HOSPITALITY': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop',
+                                                'NIGHTLIFE & ENTERTAINMENT': 'https://images.unsplash.com/photo-1514991286902-86b79b814b96?w=600&h=600&fit=crop',
+                                                'HEALTHCARE & MEDICAL PROFESSIONALS': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=600&fit=crop',
+                                                'BEAUTY, PERSONAL & WELLNESS': 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=600&fit=crop',
+                                                'AUTOMOTIVE & DEALERSHIPS': 'https://images.unsplash.com/photo-1552519507-da3effff16b0?w=600&h=600&fit=crop',
+                                                'REAL ESTATE & PROPERTY': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=600&fit=crop',
+                                                'EDUCATION & INSTITUTIONS': 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=600&fit=crop',
+                                                'PROFESSIONAL SERVICES & CONSULTING': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop',
+                                                'RETAIL & SHOPPING': 'https://images.unsplash.com/photo-1555244102-5b89f8d9c90b?w=600&h=600&fit=crop',
+                                                'SPORTS, RECREATION & LEISURE': 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=600&fit=crop',
+                                                'FINANCE & MONEY SERVICES': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=600&fit=crop',
+                                            }[activeCategory as any] || 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop'
+                                        }
+                                        alt={activeCategory}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                                    {/* Overlay Badge */}
+                                    <div className="absolute bottom-4 left-4 right-4 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest text-center">
+                                        Curated • Verified
                                     </div>
                                 </div>
-                            </button>
-                        ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Subcategory Cards */}
+                    <div>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-3 h-3 rounded-full bg-gold-500 shadow-lg" />
+                            <h3 className="text-white font-bold uppercase tracking-[0.1em] text-sm">Explore Categories</h3>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {(CategorySubcategories[activeCategory as Category] || []).map((sub: string) => (
+                                <button key={sub} onClick={() => { setActiveSub(sub); setActiveFilters(null); }} className="group bg-white/[0.02] border border-white/10 rounded-2xl p-6 text-left hover:shadow-[0_10px_30px_-10px_rgba(227,185,44,0.25)] transition-all">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-lg bg-black/60 flex items-center justify-center text-gold-400"><Tag size={18} /></div>
+                                        <div>
+                                            <div className="text-lg font-semibold text-white">{sub}</div>
+                                            <div className="text-sm text-gray-400 mt-1">Find top {sub.toLowerCase()} in Mpumalanga</div>
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
@@ -2792,60 +2886,6 @@ const MarketplaceStoryCards = ({ navigate }: any) => {
           </div>
         </div>
       </section>
-
-      {/* LOCAL LEGENDS SECTION - Marketplace */}
-      <section className="py-20 bg-[#050505] relative overflow-hidden border-t border-gold-500/10">
-      {/* Background gradient */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gold-500/10 rounded-full filter blur-3xl"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="mb-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif text-gold-400 mb-4 tracking-tight font-light">
-            Local Legends
-          </h2>
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
-        </div>
-
-        {/* Hero Quote - Minimal & Elegant */}
-        <div className="mb-8 text-center">
-          <p className="text-gray-400 text-xs uppercase tracking-widest font-light mb-2">Support trusted local sellers in the Lowveld.</p>
-          <p className="text-gray-300 text-sm font-light mb-8">Discover authentic products from trusted local sellers.</p>
-        </div>
-
-        {/* CTA Buttons - Simple & Direct */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button 
-            onClick={() => navigate('marketplace')}
-            className="group px-8 py-3 border-2 border-gold-500/60 text-gold-400 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-gold-500/20 hover:border-gold-400 transition-all duration-500 hover:shadow-[0_0_30px_rgba(227,185,44,0.3)]"
-          >
-            Explore Marketplace
-          </button>
-          <button 
-            onClick={() => navigate('business-submission')}
-            className="group px-8 py-3 bg-gold-500/20 border-2 border-gold-500/40 text-gold-300 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-gold-500/30 hover:border-gold-400 transition-all duration-500"
-          >
-            Become a Seller
-          </button>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </section>
     </>
   );
 };
@@ -4430,7 +4470,6 @@ function App() {
   const navItems = [
     { id: 'home', label: 'Home' }, 
     { id: 'directory', label: 'Directory' }, 
-    { id: 'marketplace', label: 'Marketplace' }, 
     { id: 'lowveld-stories', label: 'Stories' }
   ];
 
@@ -5037,24 +5076,8 @@ function App() {
 }
 
 export default function AppWithErrorBoundary() {
-  // ===== ADMIN ROUTING: Check if we should render AdminApp based on current path =====
-  const [renderingAdmin, setRenderingAdmin] = React.useState(false);
-  
-  React.useEffect(() => {
-    const path = window.location.pathname;
-    setRenderingAdmin(path.startsWith('/admin'));
-  }, []);
-  
-  // If rendering admin app, return it directly
-  if (renderingAdmin) {
-    return (
-      <ErrorBoundary>
-        <AdminApp />
-      </ErrorBoundary>
-    );
-  }
-  
-  // Otherwise render main app
+  // For now, always render main App (admin routing disabled due to import issues)
+  // Admin can be accessed via built-in admin dashboard
   return (
     <ErrorBoundary>
       <App />
