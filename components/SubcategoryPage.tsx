@@ -602,11 +602,7 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
         </div>
       </section>
 
-<<<<<<< HEAD
-      {/* Compact Action Area - Search + Filter Chips */}
-=======
       {/* Compact Action Area - Search + Filters (Location & Category Only) */}
->>>>>>> 762b9bf (Initial commit)
       <div className="container mx-auto px-4 -mt-4 relative z-20 mb-12">
         {/* Search Bar */}
         <div className="mb-6 max-w-4xl mx-auto">
@@ -621,43 +617,6 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Filter Chips */}
-        <div className="flex items-center gap-3 flex-wrap justify-center mb-6 max-w-4xl mx-auto">
-          <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Browse:</span>
-          <button className="px-4 py-2 bg-gold-500/10 border border-gold-500/40 text-gold-300 rounded-full text-sm font-medium hover:border-gold-500 hover:bg-gold-500/20 transition">All</button>
-          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Featured</button>
-          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Nearby</button>
-          <button className="px-4 py-2 bg-black/60 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:border-gold-500 transition">Top Rated</button>
-        </div>
-
-        {/* Category Tags */}
-        {hasSelectedSubcategory === false && (
-          <div className="flex items-center gap-2 overflow-x-auto pb-3 max-w-4xl mx-auto">
-            <span className="text-xs text-gray-400 uppercase tracking-wider flex-shrink-0">Categories:</span>
-            {(() => {
-              const preferred = config?.subcategories || [
-                'Shisanyama & Braai',
-                'Fine Dining',
-                'Casual Restaurants',
-                'Cafés & Coffee Shops',
-                'Bars & Cocktail Lounges',
-                'Catering Services',
-                'Bakeries & Desserts',
-                'Food Trucks & Pop-ups'
-              ];
-              const related = categoryKey ? CategorySubcategories[categoryKey] || [] : [];
-              const remaining = related.filter(r => !preferred.includes(r));
-              const ordered = preferred.filter(p => related.includes(p)).concat(remaining);
-              return ordered.map(s => (
-                <button key={s} onClick={() => onSelectSubcategory?.(s)} className="flex-shrink-0 px-3 py-2 bg-black border border-white/10 text-gray-300 rounded-full text-xs font-medium hover:border-gold-500 hover:text-gold-300 transition whitespace-nowrap">
-                  {s}
-                </button>
-              ));
-            })()}
-          </div>
-        )}
-=======
         {/* Two-Filter Bar: Location + Category */}
         <div className="flex items-center gap-3 flex-wrap mb-6 max-w-4xl mx-auto">
           {/* Location Filter */}
@@ -705,7 +664,6 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
             </select>
           )}
         </div>
->>>>>>> 762b9bf (Initial commit)
       </div>
 
       {/* Tier Highlight Section (Landing Page Only) - MOVED AFTER SEARCH */}
