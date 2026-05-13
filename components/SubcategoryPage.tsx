@@ -602,7 +602,11 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Compact Action Area - Search + Filter Chips */}
+=======
+      {/* Compact Action Area - Search + Filters (Location & Category Only) */}
+>>>>>>> 762b9bf (Initial commit)
       <div className="container mx-auto px-4 -mt-4 relative z-20 mb-12">
         {/* Search Bar */}
         <div className="mb-6 max-w-4xl mx-auto">
@@ -617,6 +621,7 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Filter Chips */}
         <div className="flex items-center gap-3 flex-wrap justify-center mb-6 max-w-4xl mx-auto">
           <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Browse:</span>
@@ -652,6 +657,55 @@ const SubcategoryPage: React.FC<Props> = ({ categoryName, subCategoryName, listi
             })()}
           </div>
         )}
+=======
+        {/* Two-Filter Bar: Location + Category */}
+        <div className="flex items-center gap-3 flex-wrap mb-6 max-w-4xl mx-auto">
+          {/* Location Filter */}
+          <select 
+            value={location} 
+            onChange={(e) => setLocation(e.target.value)}
+            className="px-4 py-2 bg-black border border-white/30 text-white rounded-full text-sm font-medium hover:border-white/50 transition outline-none cursor-pointer"
+          >
+            <option>All Areas</option>
+            {MPUMALANGA_AREAS.map(area => (
+              <option key={area}>{area}</option>
+            ))}
+          </select>
+
+          {/* Category Filter */}
+          {hasSelectedSubcategory === false && (
+            <select 
+              value={subCategoryName} 
+              onChange={(e) => {
+                if (e.target.value) {
+                  onSelectSubcategory?.(e.target.value);
+                }
+              }}
+              className="px-4 py-2 bg-black border border-white/30 text-white rounded-full text-sm font-medium hover:border-white/50 transition outline-none cursor-pointer"
+            >
+              <option value="">All Categories</option>
+              {(() => {
+                const preferred = config?.subcategories || [
+                  'Shisanyama & Braai',
+                  'Fine Dining',
+                  'Casual Restaurants',
+                  'Cafés & Coffee Shops',
+                  'Bars & Cocktail Lounges',
+                  'Catering Services',
+                  'Bakeries & Desserts',
+                  'Food Trucks & Pop-ups'
+                ];
+                const related = categoryKey ? CategorySubcategories[categoryKey] || [] : [];
+                const remaining = related.filter(r => !preferred.includes(r));
+                const ordered = preferred.filter(p => related.includes(p)).concat(remaining);
+                return ordered.map(s => (
+                  <option key={s} value={s}>{s}</option>
+                ));
+              })()}
+            </select>
+          )}
+        </div>
+>>>>>>> 762b9bf (Initial commit)
       </div>
 
       {/* Tier Highlight Section (Landing Page Only) - MOVED AFTER SEARCH */}

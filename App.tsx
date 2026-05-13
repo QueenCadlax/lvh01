@@ -3972,11 +3972,19 @@ const HomeView = ({ navigate, favorites, toggleFavorite, businesses, activeArea,
                                 </div>
                                 <div className="relative z-10 container mx-auto px-4 text-center">
                                         <div className="max-w-4xl mx-auto">
+<<<<<<< HEAD
                                                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-4 tracking-tight font-black leading-tight">Discover Mpumalanga's Most Refined Businesses</h1>
                                                 <p className="text-gray-300 text-sm md:text-base mb-8 opacity-80">A curated digital ecosystem connecting you to trusted brands, premium services, and exceptional experiences across the Lowveld.</p>
 
                                                 <div className="flex flex-col items-center justify-center gap-4">
                                                     <button onClick={() => navigate('directory')} className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm shadow-2xl hover:bg-gold-500 hover:text-black transition-colors duration-500">Browse the Directory</button>
+=======
+                                                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-white mb-4 md:mb-6 tracking-tight font-black leading-tight">Discover Mpumalanga's Most Refined Businesses</h1>
+                                                <p className="text-xs sm:text-sm md:text-base mb-6 md:mb-8 opacity-80 text-gray-200 leading-relaxed">A curated digital ecosystem connecting you to trusted brands, premium services, and exceptional experiences across the Lowveld.</p>
+
+                                                <div className="flex flex-col items-center justify-center gap-3 md:gap-4">
+                                                    <button onClick={() => navigate('directory')} className="bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm shadow-2xl hover:bg-gold-500 hover:text-black transition-colors duration-500">Browse the Directory</button>
+>>>>>>> 762b9bf (Initial commit)
                                                     <PWAInstallButton />
                                                 </div>
                                         </div>
@@ -4546,6 +4554,10 @@ function App() {
 
         const DirectoryView: React.FC<any> = ({ navigate, businesses, activeArea, setActiveArea, initialCategory, initialSubcategory }) => {
             const [query, setQuery] = useState('');
+<<<<<<< HEAD
+=======
+            const [showSearchResults, setShowSearchResults] = useState(false);
+>>>>>>> 762b9bf (Initial commit)
             useEffect(() => {
                 if (initialCategory && !initialSubcategory) {
                     handleNavigate('subcategory', initialCategory);
@@ -4579,6 +4591,7 @@ function App() {
                 { label: Category.WomenHealthAndMaternal, icon: WomenHealthIcon }
             ];
 
+<<<<<<< HEAD
             const handleSearch = () => {
                 const q = query.trim().toLowerCase();
                 if (!q) return;
@@ -4587,6 +4600,45 @@ function App() {
                 const biz = businesses.find((b: any) => b.name.toLowerCase().includes(q));
                 if (biz) return handleNavigate('business-detail', undefined, biz.id);
                 handleNavigate('directory');
+=======
+            // Live search filtering
+            const searchResults = useMemo(() => {
+                const q = query.trim().toLowerCase();
+                if (!q) return [];
+                
+                const matches: any[] = [];
+                
+                // Search categories
+                const catMatches = categories.filter((c: any) => 
+                    (c.label as string).toLowerCase().includes(q)
+                );
+                matches.push(...catMatches.map(c => ({ type: 'category', label: c.label, icon: c.icon })));
+                
+                // Search businesses by name
+                const bizMatches = businesses.filter((b: any) => 
+                    b.name.toLowerCase().includes(q) && matches.length < 8
+                );
+                matches.push(...bizMatches.map(b => ({ type: 'business', id: b.id, name: b.name, category: b.category })));
+                
+                return matches.slice(0, 8);
+            }, [query]);
+
+            const handleSearch = () => {
+                const q = query.trim().toLowerCase();
+                if (!q) return;
+                if (searchResults.length > 0) {
+                    const first = searchResults[0];
+                    if (first.type === 'category') {
+                        setShowSearchResults(false);
+                        return navigate('category-listings', first.label);
+                    } else if (first.type === 'business') {
+                        setShowSearchResults(false);
+                        return navigate('business-detail', undefined, first.id);
+                    }
+                }
+                setShowSearchResults(false);
+                navigate('directory');
+>>>>>>> 762b9bf (Initial commit)
             };
 
             React.useEffect(() => {
@@ -4627,16 +4679,56 @@ function App() {
                         </div>
 
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-4">
+<<<<<<< HEAD
                             <div className="flex-1">
                                 <div className="relative">
                                     <input
                                         value={query}
                                         onChange={e => setQuery(e.target.value)}
+=======
+                            <div className="flex-1 relative z-50">
+                                <div className="relative">
+                                    <input
+                                        value={query}
+                                        onChange={e => { setQuery(e.target.value); setShowSearchResults(true); }}
+                                        onKeyDown={e => { if (e.key === 'Enter') handleSearch(); }}
+                                        onFocus={() => query && setShowSearchResults(true)}
+>>>>>>> 762b9bf (Initial commit)
                                         placeholder="Search businesses, services or experiences"
                                         className="w-full rounded-[14px] px-4 py-3 text-white placeholder-[#6F6F6F] outline-none"
                                         style={{background: '#141414', border: 'none', boxShadow: '0 0 0 1px rgba(255,215,0,0.08)'}}
                                     />
                                     <button onClick={handleSearch} className="absolute right-1 top-1 bottom-1 px-4 py-2 rounded-[12px] mr-1 text-black" style={{background: '#C9A24D'}}>Search</button>
+<<<<<<< HEAD
+=======
+                                    
+                                    {/* Live Search Results Dropdown */}
+                                    {showSearchResults && searchResults.length > 0 && (
+                                        <div className="absolute top-full left-0 right-0 mt-2 bg-black border border-white/10 rounded-lg overflow-hidden shadow-xl z-50">
+                                            {searchResults.map((result, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() => {
+                                                        if (result.type === 'category') {
+                                                            navigate('category-listings', result.label);
+                                                        } else {
+                                                            navigate('business-detail', undefined, result.id);
+                                                        }
+                                                        setShowSearchResults(false);
+                                                        setQuery('');
+                                                    }}
+                                                    className="w-full text-left px-4 py-3 hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors flex items-center gap-3"
+                                                >
+                                                    <div className="text-lg">{result.type === 'category' ? '📁' : '🏢'}</div>
+                                                    <div>
+                                                        <div className="text-sm font-medium text-white">{result.type === 'category' ? result.label : result.name}</div>
+                                                        {result.type === 'business' && <div className="text-xs text-gray-400">{result.category}</div>}
+                                                    </div>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+>>>>>>> 762b9bf (Initial commit)
                                 </div>
 
                                 <div className="mt-2">
@@ -4644,7 +4736,11 @@ function App() {
                                 </div>
                             </div>
 
+<<<<<<< HEAD
                             <div className="ml-4 inline-block bg-[#141414] p-2 rounded-lg">
+=======
+                            <div className="ml-0 md:ml-4 inline-block bg-[#141414] p-2 rounded-lg">
+>>>>>>> 762b9bf (Initial commit)
                                 <AreaSelector activeArea={activeArea} onChange={setActiveArea} />
                             </div>
                         </div>

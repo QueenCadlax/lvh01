@@ -83,11 +83,16 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
   return (
     <div className="pt-24 pb-16 min-h-screen bg-black">
       {/* PREMIUM HERO SECTION */}
+<<<<<<< HEAD
       <section className="relative h-80 bg-gradient-to-br from-black via-black to-black overflow-hidden mb-12">
+=======
+      <section className="relative min-h-[auto] md:h-80 bg-gradient-to-br from-black via-black to-black overflow-hidden mb-8 md:mb-12">
+>>>>>>> 762b9bf (Initial commit)
         <div className="absolute inset-0 opacity-30">
           <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent" />
         </div>
 
+<<<<<<< HEAD
         <div className="relative h-full flex flex-col items-center justify-center text-center px-8 space-y-6">
           <div className="inline-block px-3 py-1 rounded-full" style={{ background: 'rgba(201,162,77,0.15)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>🍽️ Culinary</div>
           <h1 className="text-5xl md:text-6xl font-bold font-serif" style={{ color: '#FFFFFF' }}>Where Mpumalanga Eats</h1>
@@ -95,6 +100,15 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
 
           {/* Hero Search */}
           <div className="max-w-2xl mx-auto w-full mt-8 relative">
+=======
+        <div className="relative flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-4 md:space-y-6 py-6 md:py-0 md:h-full">
+          <div className="inline-block px-3 py-1 rounded-full" style={{ background: 'rgba(201,162,77,0.15)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>🍽️ Culinary</div>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold font-serif" style={{ color: '#FFFFFF' }}>Where Mpumalanga Eats</h1>
+          <p className="text-sm sm:text-base md:text-lg" style={{ color: '#CFCFCF', maxWidth: '600px' }}>From smoky shisanyama to refined fine dining. Discover where locals celebrate, connect, and indulge.</p>
+
+          {/* Hero Search */}
+          <div className="max-w-2xl mx-auto w-full mt-4 md:mt-8 relative">
+>>>>>>> 762b9bf (Initial commit)
             <div className="relative">
               <input
                 type="text"
@@ -102,6 +116,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
                 value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value); setSuggestionsOpen(true); }}
                 onFocus={() => setSuggestionsOpen(true)}
+<<<<<<< HEAD
                 className="w-full px-6 py-4 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 text-base shadow-lg"
               />
               <Search className="absolute right-4 top-4 text-gray-400" size={20} />
@@ -112,6 +127,18 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
                 <div className="flex flex-wrap gap-2">
                   {allSuggestions.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).slice(0,8).map(s => (
                     <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full text-sm" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.2)', color: '#CFCFCF' }}>{s}</button>
+=======
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm sm:text-base shadow-lg"
+              />
+              <Search className="absolute right-3 sm:right-4 top-3 sm:top-4 text-gray-400" size={18} />
+            </div>
+            {suggestionsOpen && searchTerm.length > 0 && (
+              <div className="absolute left-0 right-0 mt-2 bg-black/90 border border-white/10 rounded-lg p-3 sm:p-4 z-40 max-h-64 overflow-y-auto">
+                <div className="text-xs text-gray-400 mb-3 uppercase tracking-wider">Suggestions</div>
+                <div className="flex flex-wrap gap-2">
+                  {allSuggestions.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).slice(0,8).map(s => (
+                    <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full text-xs sm:text-sm" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.2)', color: '#CFCFCF' }}>{s}</button>
+>>>>>>> 762b9bf (Initial commit)
                   ))}
                 </div>
               </div>
@@ -120,11 +147,19 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
         </div>
       </section>
 
+<<<<<<< HEAD
       <div className="container mx-auto px-6 space-y-16">
         {/* PREMIUM FILTER BAR */}
         <div className="flex items-center gap-3 flex-wrap">
           <div className="relative">
             <button onClick={() => setAreaOpen(!areaOpen)} className="px-4 py-2 rounded-lg text-sm font-semibold transition-all" style={{ background: filters.areas?.length ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.areas?.length ? '#000' : '#C9A24D' }}>
+=======
+      <div className="container mx-auto px-4 sm:px-6 space-y-12 md:space-y-16">
+        {/* PREMIUM FILTER BAR */}
+        <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+          <div className="relative">
+            <button onClick={() => setAreaOpen(!areaOpen)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" style={{ background: filters.areas?.length ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.areas?.length ? '#000' : '#C9A24D' }}>
+>>>>>>> 762b9bf (Initial commit)
               📍 {filters.areas?.length ? filters.areas[0] : 'All Areas'}
             </button>
             {areaOpen && (
@@ -140,7 +175,11 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
           </div>
 
           <div className="relative">
+<<<<<<< HEAD
             <button onClick={() => setTypeOpen(!typeOpen)} className="px-4 py-2 rounded-lg text-sm font-semibold transition-all" style={{ background: filters.category ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.category ? '#000' : '#C9A24D' }}>
+=======
+            <button onClick={() => setTypeOpen(!typeOpen)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" style={{ background: filters.category ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.category ? '#000' : '#C9A24D' }}>
+>>>>>>> 762b9bf (Initial commit)
               🍴 {filters.category || 'Type'}
             </button>
             {typeOpen && (
@@ -152,6 +191,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
             )}
           </div>
 
+<<<<<<< HEAD
           <button onClick={() => setMoreOpen(true)} className="px-4 py-2 rounded-lg text-sm font-semibold" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D' }}>
             ⚙️ More Filters
           </button>
@@ -159,6 +199,15 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
           <div className="ml-auto flex items-center gap-2">
             <span className="text-xs text-gray-400">Sort by:</span>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-gray-200 text-sm">
+=======
+          <button onClick={() => setMoreOpen(true)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D' }}>
+            ⚙️ More Filters
+          </button>
+
+          <div className="ml-auto flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
+            <span className="text-xs text-gray-400 hidden sm:inline">Sort by:</span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-2 sm:px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-gray-200 text-xs sm:text-sm">
+>>>>>>> 762b9bf (Initial commit)
               <option value="rating">⭐ Rating</option>
               <option value="trending">🔥 Trending</option>
               <option value="newest">✨ Newest</option>
@@ -202,10 +251,17 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
 
         {/* ALL RESTAURANTS */}
         <section>
+<<<<<<< HEAD
           <h2 className="text-2xl font-bold mb-6">All Restaurants <span className="text-sm text-gray-400">({filtered.slice(0, 4).length} results)</span></h2>
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filtered.slice(0, 4).map(e => (
+=======
+          <h2 className="text-2xl font-bold mb-6">All Restaurants <span className="text-sm text-gray-400">({filtered.length} {searchTerm ? 'search ' : ''}results)</span></h2>
+          {filtered.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filtered.map(e => (
+>>>>>>> 762b9bf (Initial commit)
                 <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
               ))}
             </div>
@@ -213,7 +269,11 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <div style={{ fontSize: '48px', marginBottom: '16px' }}>🍽️</div>
               <h3 className="text-2xl font-bold mb-2">No Restaurants Found</h3>
+<<<<<<< HEAD
               <p style={{ color: '#CFCFCF' }}>Try adjusting your filters to discover amazing dining experiences</p>
+=======
+              <p style={{ color: '#CFCFCF' }}>Try adjusting your filters or search term to discover amazing dining experiences</p>
+>>>>>>> 762b9bf (Initial commit)
             </div>
           )}
         </section>
