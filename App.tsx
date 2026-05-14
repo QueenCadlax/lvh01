@@ -3029,6 +3029,7 @@ const GoldStandardSection = ({ navigate }: any) => {
 };
 
 const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
+    const [activeTab, setActiveTab] = useState('properties');
     const [filters, setFilters] = useState({
         type: 'All',
         bedrooms: 'All',
@@ -3157,8 +3158,30 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                 </div>
             </div>
 
-            {/* Filter Panel - IMPROVED HIERARCHY */}
+            {/* Tab Navigation - Properties vs Elite Agents */}
             <div className="sticky top-24 z-40 bg-black/95 backdrop-blur-lg border-b border-white/5">
+                <div className="container mx-auto px-4 py-3">
+                    <div className="flex bg-white/5 p-1 rounded-xl border border-white/10 w-fit">
+                        <button 
+                            onClick={() => setActiveTab('properties')}
+                            className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'properties' ? 'bg-gold-500 text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                        >
+                            Properties
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab('agents')}
+                            className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'agents' ? 'bg-gold-500 text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                        >
+                            Elite Agents
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {activeTab === 'properties' ? (
+            <>
+            {/* Filter Panel - IMPROVED HIERARCHY */}
+            <div className="sticky top-32 z-40 bg-black/95 backdrop-blur-lg border-b border-white/5">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center gap-4 overflow-x-auto pb-4 md:pb-0">
                         <button
@@ -3456,6 +3479,84 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                     </>
                 )}
             </div>
+            </>
+            ) : (
+            /* Elite Agents Section */
+            <div className="container mx-auto px-4 py-12 pb-24">
+                {estateAgents.length === 0 ? (
+                    <div className="py-24 text-center">
+                        <p className="text-gray-400 text-lg">No agents available</p>
+                    </div>
+                ) : (
+                    <>
+                        <h2 className="text-3xl md:text-4xl font-serif text-gold-400 mb-2 text-center">Elite Agents</h2>
+                        <p className="text-center text-gray-400 mb-12">Our top-tier real estate professionals</p>
+                        
+                        <div className="flex flex-wrap gap-8 justify-center">
+                            {estateAgents.map((agent) => (
+                                <div key={agent.id} className="w-full md:w-80 group">
+                                    <div className="relative bg-black/80 border border-gold-400/50 rounded-2xl overflow-hidden h-full flex flex-col hover:border-gold-500 transition-all duration-300 hover:-translate-y-2">
+                                        
+                                        {/* Agent Image */}
+                                        <div className="relative h-56 overflow-hidden bg-gradient-to-b from-gold-500/10 to-transparent">
+                                            <img 
+                                                src={agent.image} 
+                                                alt={agent.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                            
+                                            {/* Tier Badge */}
+                                            {agent.tier === 'Platinum' && (
+                                                <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-purple-500 px-3 py-1 rounded-full">
+                                                    <span className="text-xs font-bold uppercase tracking-widest text-white">Platinum</span>
+                                                </div>
+                                            )}
+                                            {agent.tier === 'Elite' && (
+                                                <div className="absolute top-4 right-4 bg-gradient-to-r from-gold-500 to-gold-400 px-3 py-1 rounded-full">
+                                                    <span className="text-xs font-bold uppercase tracking-widest text-black">Elite</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        {/* Agent Info */}
+                                        <div className="flex-1 p-6 flex flex-col">
+                                            <h3 className="text-xl font-serif text-gold-400 mb-2">{agent.name}</h3>
+                                            
+                                            {/* Location */}
+                                            <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+                                                <MapPin size={14} className="text-gold-400" />
+                                                <span>{agent.location}</span>
+                                            </div>
+                                            
+                                            {/* Rating */}
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <div className="flex text-gold-400">
+                                                    {[...Array(5)].map((_, i) => (
+                                                        <Star key={i} size={14} fill={i < Math.floor(agent.rating || 0) ? 'currentColor' : 'none'} />
+                                                    ))}
+                                                </div>
+                                                <span className="text-xs text-gray-400">({agent.reviewCount || 0})</span>
+                                            </div>
+                                            
+                                            {/* Specialty/Bio */}
+                                            <p className="text-xs text-gray-400 mb-4 flex-1">
+                                                {agent.description || `Specialized in premium residential properties across Mpumalanga`}
+                                            </p>
+                                            
+                                            {/* Contact Button */}
+                                            <button className="w-full bg-gradient-to-r from-gold-600 to-gold-500 text-black font-bold py-2 rounded-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all">
+                                                Contact Agent
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+            )}
 
             {/* Concierge Floating Button */}
             {!showConcierge && (

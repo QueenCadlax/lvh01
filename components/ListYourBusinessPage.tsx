@@ -282,7 +282,7 @@ export default function ListYourBusinessPage({ onNavigate }: ListYourBusinessPag
               
               <a 
                 href="mailto:info@lowveldhub.co.za"
-                className="inline-block text-4xl font-bold text-yellow-400 hover:text-yellow-300 transition duration-300 mb-8"
+                className="inline-block text-base md:text-lg font-semibold text-yellow-400 hover:text-yellow-300 transition duration-300 mb-8 break-all"
               >
                 info@lowveldhub.co.za
               </a>
