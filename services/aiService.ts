@@ -34,18 +34,31 @@ export const getSmartRecommendations = async (query: string): Promise<string[]> 
  */
 export const chatWithConcierge = async (message: string, history: string[]): Promise<string> => {
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    const chat = ai.chats.create({
+    const apiKey = process.env.API_KEY;
+    console.log("🤖 Concierge API Key exists:", !!apiKey);
+    
+    if (!apiKey) {
+      console.error("❌ No API key found in process.env.API_KEY");
+      return "AI services are not configured. Please contact support.";
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    console.log("✅ GoogleGenAI initialized");
+    
+    const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
+      contents: message,
       config: {
         systemInstruction: "You are the Lowveld AI Concierge, a luxury assistant for Mpumalanga (LowveldHub). Understand local South African terms and slang (examples: 'shisanyama' -> braai/restaurant; 'bakkie' -> light pickup/vehicle; 'koppie' -> small hill/landmark; 'boma' -> outdoor enclosure/venue). When given a search or recommendation request, prioritise and explicitly surface verified, Premium, Elite and Platinum listings first, then higher-rated businesses, then local proximity. If user asks about cars, recommend verified dealers first, then sponsored listings. Provide concise contextual reasoning (1 sentence) why each recommendation is ranked. Use polite, sophisticated tone and keep responses short (<= 80 words).",
       },
     });
     
-    const result = await chat.sendMessage({ message });
-    return result.text || "I apologize, I am unable to process that request at the moment.";
-  } catch (error) {
-     return "I am currently offline. Please try again later.";
+    console.log("✅ AI Response received:", response.text?.substring(0, 50));
+    return response.text || "I apologize, I am unable to process that request at the moment.";
+  } catch (error: any) {
+    console.error("❌ AI Concierge Error:", error?.message || error);
+    console.error("Full error details:", error);
+    return `Error: ${error?.message || 'AI service temporarily unavailable'}`;
   }
 };
 
@@ -94,7 +107,7 @@ export const generateAIListingDetails = async (name: string, type: string, conte
         return {
             description: `Experience premium service at ${name}. A top-tier destination in Mpumalanga.`,
             tags: ["Premium", "Mpumalanga", "Service"],
-        category: Category.BusinessAndProfessional
+            category: Category.ProfessionalServices
         };
     }
 }
@@ -592,15 +605,32 @@ export const generateVIPItinerary = async (preferences: {
  */
 export const chatWithConciergeEnhanced = async (message: string, preferences: any, history: any[]): Promise<{ response: string; updatedPreferences: any }> => {
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const apiKey = process.env.API_KEY;
+    console.log("🤖 Enhanced Concierge API Key exists:", !!apiKey);
+    
+    if (!apiKey) {
+      console.error("❌ No API key found");
+      return {
+        response: "AI services are not configured. Please contact support.",
+        updatedPreferences: preferences
+      };
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    console.log("✅ GoogleGenAI initialized for enhanced concierge");
     
     // Build context from preferences
     const contextStr = preferences && Object.keys(preferences).length > 0 
       ? `User preferences: Categories: ${preferences.favoriteCategories?.join(', ')}, Areas: ${preferences.favoriteAreas?.join(', ')}, Budget: R${preferences.priceRange?.min}-${preferences.priceRange?.max}`
       : '';
 
-    const chat = ai.chats.create({
+    // Build conversation history string for context
+    const historyContext = history.slice(-3).map(h => `${h.role === 'user' ? 'User' : 'AI'}: ${h.message}`).join('\n');
+    const fullPrompt = historyContext ? `Previous conversation:\n${historyContext}\n\nUser: ${message}` : message;
+
+    const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
+      contents: fullPrompt,
       config: {
         systemInstruction: `You are the Lowveld AI Concierge, a luxury personal assistant for Mpumalanga (LowveldHub). 
         
@@ -616,24 +646,17 @@ You have access to user preferences and conversation history. Use them to:
 Keep responses warm, sophisticated, and concise (<100 words). If user seems interested in something, suggest related experiences.`,
       },
     });
-
-    // Add history context
-    for (const msg of history.slice(-5)) {
-      if (msg.role === 'user') {
-        await chat.sendMessage({ message: msg.message });
-      }
-    }
-
-    const result = await chat.sendMessage({ message });
     
+    console.log("✅ Enhanced AI Response received:", response.text?.substring(0, 50));
     return {
-      response: result.text || "I'm delighted to assist you. How can I enhance your Mpumalanga experience today?",
+      response: response.text || "I'm delighted to assist you. How can I enhance your Mpumalanga experience today?",
       updatedPreferences: preferences
     };
-  } catch (error) {
-    console.error("AI Enhanced Concierge Error", error);
+  } catch (error: any) {
+    console.error("❌ AI Enhanced Concierge Error:", error?.message || error);
+    console.error("Full error details:", error);
     return {
-      response: "I apologize, I'm temporarily offline. Please try again in a moment.",
+      response: `Error: ${error?.message || 'AI service temporarily unavailable'}`,
       updatedPreferences: preferences
     };
   }
