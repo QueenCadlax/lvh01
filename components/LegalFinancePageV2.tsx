@@ -137,25 +137,33 @@ const LegalFinancePageV2: React.FC<LegalFinancePageV2Props> = ({ navigate }) => 
 
   return (
     <div className="pt-24 pb-12 min-h-screen bg-black">
-      <div className="container mx-auto px-6">
-        {/* HERO SECTION */}
-        <div className="max-w-4xl mx-auto text-center mb-8">
-          <h1 className="text-3xl font-serif text-white mb-2">Legal & Finance Experts</h1>
-          <p className="text-gray-300 text-sm mb-6">Lawyers, accountants, tax consultants, and financial advisors across Mpumalanga</p>
+      {/* ===== HERO SECTION ===== */}
+      <section className="bg-black border-b border-white/10">
+        <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
+              <span className="text-yellow-400">Legal & Finance Experts</span>
+            </h1>
+            <p className="text-lg text-slate-300 mb-8">
+              Explore verified lawyers, accountants, and financial advisors across Mpumalanga.
+            </p>
 
-          {/* SEARCH BAR */}
-          <div className="relative max-w-3xl mx-auto">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="text"
-              placeholder="Search professionals or services…"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/5 text-gray-200 placeholder-gray-500 border border-white/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm"
-            />
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search professionals, services, firms…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-lg border border-white/10 bg-black/70 backdrop-blur-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400/50 transition-all"
+              />
+            </div>
           </div>
         </div>
+      </section>
 
+      <div className="container mx-auto px-6">
         {/* MAIN CONTENT - Filter + Results */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* FILTER SIDEBAR */}

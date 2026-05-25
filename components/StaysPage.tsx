@@ -238,29 +238,30 @@ export default function StaysPage({ navigate, businesses }: { navigate?: (view: 
   return (
     <div className="min-h-screen bg-black text-black pt-20 pb-16">
       {/* HERO SECTION */}
-      <div className="relative h-80 bg-black overflow-hidden mb-16">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
-        </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-8 space-y-6">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white tracking-tight">Hospitality</h1>
-          <p className="text-lg text-gray-400 max-w-2xl font-light">Discover luxury accommodations across Mpumalanga</p>
-          
-          {/* Search Bar */}
-          <div className="max-w-2xl w-full mt-6">
+      <section className="bg-black border-b border-white/10 mb-12">
+        <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
+              <span className="text-yellow-400">Find Luxury Stays</span>
+            </h1>
+            <p className="text-lg text-slate-300 mb-8">
+              Discover verified accommodations, resorts, and lodges across Mpumalanga.
+            </p>
+
+            {/* Search Bar */}
             <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
+                placeholder="Search villas, lodges, resorts…"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search by name, type, or amenities..."
-                className="w-full px-4 py-3 pl-11 rounded-lg bg-white/10 border border-gold-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm"
+                className="w-full pl-12 pr-4 py-3 rounded-lg border border-white/10 bg-black/70 backdrop-blur-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400/50 transition-all"
               />
-              <Search className="absolute left-3 top-3.5 text-gray-400" size={18} />
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* DIVIDER */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">

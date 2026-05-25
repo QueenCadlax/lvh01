@@ -82,36 +82,35 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
 
   return (
     <div className="pt-24 pb-16 min-h-screen bg-black">
-      {/* PREMIUM HERO SECTION */}
-      <section className="relative min-h-[auto] md:h-80 bg-gradient-to-br from-black via-black to-black overflow-hidden mb-8 md:mb-12">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-b from-gold-500/5 to-transparent" />
-        </div>
+      {/* ===== HERO SECTION ===== */}
+      <section className="bg-black border-b border-white/10">
+        <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
+              <span className="text-yellow-400">Where Mpumalanga Eats</span>
+            </h1>
+            <p className="text-lg text-slate-300 mb-8">
+              Explore verified restaurants, shisanyama, and dining experiences across Mpumalanga.
+            </p>
 
-        <div className="relative flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 space-y-4 md:space-y-6 py-6 md:py-0 md:h-full">
-          <div className="inline-block px-3 py-1 rounded-full" style={{ background: 'rgba(201,162,77,0.15)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>🍽️ Culinary</div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold font-serif" style={{ color: '#FFFFFF' }}>Where Mpumalanga Eats</h1>
-          <p className="text-sm sm:text-base md:text-lg" style={{ color: '#CFCFCF', maxWidth: '600px' }}>From smoky shisanyama to refined fine dining. Discover where locals celebrate, connect, and indulge.</p>
-
-          {/* Hero Search */}
-          <div className="max-w-2xl mx-auto w-full mt-4 md:mt-8 relative">
+            {/* Search Bar */}
             <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search restaurants, dishes, cuisines..."
+                placeholder="Search restaurants, cuisines, dishes…"
                 value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value); setSuggestionsOpen(true); }}
                 onFocus={() => setSuggestionsOpen(true)}
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm sm:text-base shadow-lg"
+                className="w-full pl-12 pr-4 py-3 rounded-lg border border-white/10 bg-black/70 backdrop-blur-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400/50 transition-all"
               />
-              <Search className="absolute right-3 sm:right-4 top-3 sm:top-4 text-gray-400" size={18} />
             </div>
             {suggestionsOpen && searchTerm.length > 0 && (
-              <div className="absolute left-0 right-0 mt-2 bg-black/90 border border-white/10 rounded-lg p-3 sm:p-4 z-40 max-h-64 overflow-y-auto">
+              <div className="absolute left-0 right-0 mt-2 mx-auto max-w-3xl bg-black/90 border border-white/10 rounded-lg p-4 z-40 max-h-64 overflow-y-auto">
                 <div className="text-xs text-gray-400 mb-3 uppercase tracking-wider">Suggestions</div>
                 <div className="flex flex-wrap gap-2">
                   {allSuggestions.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).slice(0,8).map(s => (
-                    <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full text-xs sm:text-sm" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.2)', color: '#CFCFCF' }}>{s}</button>
+                    <button key={s} onClick={() => { setSearchTerm(s); setSuggestionsOpen(false); }} className="px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-yellow-400/20 transition-colors" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.2)', color: '#CFCFCF' }}>{s}</button>
                   ))}
                 </div>
               </div>
@@ -120,12 +119,12 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 space-y-12 md:space-y-16">
+      <div className="container mx-auto px-4 sm:px-6 space-y-12 md:space-y-16 py-12">
         {/* PREMIUM FILTER BAR */}
         <div className="flex items-center gap-2 md:gap-3 flex-wrap">
           <div className="relative">
             <button onClick={() => setAreaOpen(!areaOpen)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" style={{ background: filters.areas?.length ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.areas?.length ? '#000' : '#C9A24D' }}>
-              📍 {filters.areas?.length ? filters.areas[0] : 'All Areas'}
+              {filters.areas?.length ? filters.areas[0] : 'All Areas'}
             </button>
             {areaOpen && (
               <div className="absolute mt-2 w-64 bg-black border border-white/10 rounded-lg p-3 shadow-lg z-40" style={{ borderColor: 'rgba(201,162,77,0.2)' }}>
@@ -141,7 +140,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
 
           <div className="relative">
             <button onClick={() => setTypeOpen(!typeOpen)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap" style={{ background: filters.category ? '#C9A24D' : 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: filters.category ? '#000' : '#C9A24D' }}>
-              🍴 {filters.category || 'Type'}
+              {filters.category || 'Type'}
             </button>
             {typeOpen && (
               <div className="absolute mt-2 w-48 bg-black border rounded-lg p-3 shadow-lg z-40" style={{ borderColor: 'rgba(201,162,77,0.2)' }}>
@@ -153,15 +152,15 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
           </div>
 
           <button onClick={() => setMoreOpen(true)} className="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap" style={{ background: 'rgba(201,162,77,0.1)', border: '1px solid rgba(201,162,77,0.3)', color: '#C9A24D' }}>
-            ⚙️ More Filters
+            More Filters
           </button>
 
           <div className="ml-auto flex items-center gap-1 sm:gap-2 flex-wrap justify-end">
             <span className="text-xs text-gray-400 hidden sm:inline">Sort by:</span>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-2 sm:px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-gray-200 text-xs sm:text-sm">
-              <option value="rating">⭐ Rating</option>
-              <option value="trending">🔥 Trending</option>
-              <option value="newest">✨ Newest</option>
+              <option value="rating">Rating</option>
+              <option value="trending">Trending</option>
+              <option value="newest">Newest</option>
             </select>
           </div>
         </div>
@@ -174,7 +173,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
               <h2 className="text-2xl font-bold">Trending This Week</h2>
               <span className="text-xs text-gray-400 ml-2">Most reviewed</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-4 gap-8">
               {trending.map(e => (
                 <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
               ))}

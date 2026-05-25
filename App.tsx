@@ -3336,73 +3336,79 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                             <div className="mb-16">
                         <h2 className="text-2xl font-serif text-gold-400 mb-1">Featured Properties</h2>
                                 <p className="text-sm text-gray-400 mb-8">Curated selection of exceptional properties</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <div className="grid grid-cols-4 gap-6">
                                     {filteredProperties.filter(p => p.isFeatured).slice(0, 4).map(item => (
-                                        <div key={item.id} className="h-auto">
-                                            <div className="group relative bg-black/80 border border-gold-400 rounded-2xl overflow-hidden h-full flex flex-col hover:border-gold-500/50 transition-all duration-300 cursor-pointer hover:-translate-y-1"
-                                                onClick={() => navigate('property-detail', undefined, item.id)}>
-                                                
-                                                {/* Image Section */}
-                                                <div className="relative h-48 overflow-hidden">
-                                                    <img 
-                                                        src={item.image} 
-                                                        alt={item.title}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                    />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                                                    
-                                                    {/* Favorite Button */}
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            toggleFavorite(item.id);
-                                                        }}
-                                                        className="absolute top-3 left-3 bg-black/60 hover:bg-gold-500 text-white hover:text-black p-2 rounded-full transition-all duration-300"
-                                                    >
-                                                        <Heart size={16} fill={favorites.includes(item.id) ? 'currentColor' : 'none'} />
-                                                    </button>
+                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.03)', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                            
+                                            {/* IMAGE SECTION - 65% */}
+                                            <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.title}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover', transformOrigin: 'center', transition: 'transform 420ms ease' }}
+                                                    className="group-hover:transform group-hover:scale-105"
+                                                />
+                                                {/* gradient for text readability */}
+                                                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '40%', background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)', pointerEvents: 'none' }} />
+
+                                                {/* Favorite Button - Top Right */}
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        toggleFavorite(item.id);
+                                                    }}
+                                                    style={{ position: 'absolute', right: 12, top: 12, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', padding: 0 }}
+                                                >
+                                                    {!favorites.includes(item.id) ? (
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 21s-6.716-4.35-9.2-7.02C-0.6 9.36 3.4 4.5 7.6 6.28 9.6 7.18 11 9 12 10.44c1-1.44 2.4-3.26 4.4-4.16 4.2-1.78 8.2 3.08 4.8 7.7C18.716 16.65 12 21 12 21z" stroke="#FFFFFF" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 21s-6.716-4.35-9.2-7.02C-0.6 9.36 3.4 4.5 7.6 6.28 9.6 7.18 11 9 12 10.44c1-1.44 2.4-3.26 4.4-4.16 4.2-1.78 8.2 3.08 4.8 7.7C18.716 16.65 12 21 12 21z" fill="#C9A24D" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+
+                                                {/* Featured Badge - Top Left */}
+                                                {item.isFeatured && (
+                                                    <div style={{ position: 'absolute', left: 12, top: 12 }}>
+                                                        <span style={{ display: 'inline-block', padding: '4px 8px', borderRadius: 6, fontSize: 10, fontWeight: 700, color: '#000', background: '#C9A24D', letterSpacing: '0.05em' }}>FEATURED</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* CONTENT SECTION - 35% */}
+                                            <div style={{ padding: '12px 14px', color: '#FFFFFF', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '35%', fontSize: 14 }}>
+                                                <div>
+                                                    {/* Property Type & Area */}
+                                                    <div style={{ fontSize: 11, color: '#9DA0A6', marginBottom: 6, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                        {item.type || 'Property'} • {item.area}
+                                                    </div>
+
+                                                    {/* Title */}
+                                                    <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#FFFFFF', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
+                                                        {item.title}
+                                                    </h3>
+
+                                                    {/* Price */}
+                                                    <div style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                        {item.price}
+                                                    </div>
                                                 </div>
 
-                                                {/* Content Section */}
-                                                <div className="flex-1 p-6 flex flex-col justify-between">
-                                                    <div>
-                                                        <h3 className="text-lg font-serif text-white group-hover:text-gold-400 transition-colors line-clamp-2 mb-2">
-                                                            {item.title}
-                                                        </h3>
-                                                        <div className="flex items-center gap-1 text-gold-400 text-xs mb-4">
-                                                            <MapPin size={12} />
-                                                            <span>{item.area}</span>
-                                                        </div>
-                                                        <p className="text-xl font-bold text-white mb-4">{item.price}</p>
-                                                        
-                                                        {/* Specs */}
-                                                        <div className="flex gap-4 text-xs text-gray-400">
-                                                            <div className="flex items-center gap-1">
-                                                                <Bed size={14} />
-                                                                <span>{item.beds} Beds</span>
-                                                            </div>
-                                                            <div className="flex items-center gap-1">
-                                                                <Droplets size={14} />
-                                                                <span>{item.baths} Baths</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Agent Info */}
-                                                    <div className="border-t border-white/5 pt-4 mt-4">
-                                                        <div className="flex items-center gap-2">
-                                                            {item.agentImage && (
-                                                                <img 
-                                                                    src={item.agentImage} 
-                                                                    alt={item.agentName}
-                                                                    className="w-8 h-8 rounded-full object-cover"
-                                                                />
-                                                            )}
-                                                            <span className="text-xs text-gray-400">{item.agentName}</span>
-                                                        </div>
-                                                    </div>
+                                                {/* Specs */}
+                                                <div style={{ fontSize: 11, color: '#9DA0A6', display: 'flex', gap: 8, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 8, marginTop: 8, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                    <span>{item.beds} Bed{item.beds !== 1 ? 's' : ''}</span>
+                                                    <span>•</span>
+                                                    <span>{item.baths} Bath{item.baths !== 1 ? 's' : ''}</span>
                                                 </div>
                                             </div>
+
+                                            <style>{`
+                                                .group { transform: translateY(0); }
+                                                .group:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); border-color: rgba(201,162,77,0.3); }
+                                            `}</style>
                                         </div>
                                     ))}
                                 </div>
@@ -3413,73 +3419,72 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                         <div>
                             <h2 className="text-2xl font-serif text-white mb-1">All Properties</h2>
                             <p className="text-sm text-gray-400 mb-8">{filteredProperties.length} available</p>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-4 gap-6">
                                 {filteredProperties.slice(0, 4).map(item => (
-                                    <div key={item.id} className="h-auto">
-                                        <div className="group relative bg-black/80 border border-gold-400 rounded-lg overflow-hidden h-full flex flex-col hover:border-gold-500/50 transition-all duration-300 cursor-pointer hover:-translate-y-1"
-                                            onClick={() => navigate('property-detail', undefined, item.id)}>
-                                            
-                                            {/* Image Section */}
-                                            <div className="relative h-32 overflow-hidden">
-                                                <img 
-                                                    src={item.image} 
-                                                    alt={item.title}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                                                
-                                                {/* Favorite Button */}
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        toggleFavorite(item.id);
-                                                    }}
-                                                    className="absolute top-2 left-2 bg-black/60 hover:bg-gold-500 text-white hover:text-black p-1.5 rounded-full transition-all duration-300"
-                                                >
-                                                    <Heart size={14} fill={favorites.includes(item.id) ? 'currentColor' : 'none'} />
-                                                </button>
+                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.03)', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                        
+                                        {/* IMAGE SECTION - 65% */}
+                                        <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.title}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover', transformOrigin: 'center', transition: 'transform 420ms ease' }}
+                                                className="group-hover:transform group-hover:scale-105"
+                                            />
+                                            {/* gradient for text readability */}
+                                            <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '40%', background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)', pointerEvents: 'none' }} />
+
+                                            {/* Favorite Button - Top Right */}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    toggleFavorite(item.id);
+                                                }}
+                                                style={{ position: 'absolute', right: 12, top: 12, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', padding: 0 }}
+                                            >
+                                                {!favorites.includes(item.id) ? (
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 21s-6.716-4.35-9.2-7.02C-0.6 9.36 3.4 4.5 7.6 6.28 9.6 7.18 11 9 12 10.44c1-1.44 2.4-3.26 4.4-4.16 4.2-1.78 8.2 3.08 4.8 7.7C18.716 16.65 12 21 12 21z" stroke="#FFFFFF" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 21s-6.716-4.35-9.2-7.02C-0.6 9.36 3.4 4.5 7.6 6.28 9.6 7.18 11 9 12 10.44c1-1.44 2.4-3.26 4.4-4.16 4.2-1.78 8.2 3.08 4.8 7.7C18.716 16.65 12 21 12 21z" fill="#C9A24D" />
+                                                    </svg>
+                                                )}
+                                            </button>
+                                        </div>
+
+                                        {/* CONTENT SECTION - 35% */}
+                                        <div style={{ padding: '12px 14px', color: '#FFFFFF', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '35%', fontSize: 14 }}>
+                                            <div>
+                                                {/* Property Type & Area */}
+                                                <div style={{ fontSize: 11, color: '#9DA0A6', marginBottom: 6, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                    {item.type || 'Property'} • {item.area}
+                                                </div>
+
+                                                {/* Title */}
+                                                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#FFFFFF', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
+                                                    {item.title}
+                                                </h3>
+
+                                                {/* Price */}
+                                                <div style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                    {item.price}
+                                                </div>
                                             </div>
 
-                                            {/* Content Section */}
-                                            <div className="flex-1 p-4 flex flex-col justify-between">
-                                                <div>
-                                                    <h3 className="text-sm font-serif text-white group-hover:text-gold-400 transition-colors line-clamp-2 mb-1">
-                                                        {item.title}
-                                                    </h3>
-                                                    <div className="flex items-center gap-1 text-gold-400 text-xs mb-2">
-                                                        <MapPin size={11} />
-                                                        <span className="line-clamp-1">{item.area}</span>
-                                                    </div>
-                                                    <p className="text-base font-bold text-white mb-3">{item.price}</p>
-                                                    
-                                                    {/* Specs */}
-                                                    <div className="flex gap-3 text-xs text-gray-400">
-                                                        <div className="flex items-center gap-0.5">
-                                                            <Bed size={12} />
-                                                            <span>{item.beds}</span>
-                                                        </div>
-                                                        <div className="flex items-center gap-0.5">
-                                                            <Droplets size={12} />
-                                                            <span>{item.baths}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Agent Info */}
-                                                <div className="border-t border-white/5 pt-3 mt-3">
-                                                    <div className="flex items-center gap-1.5">
-                                                        {item.agentImage && (
-                                                            <img 
-                                                                src={item.agentImage} 
-                                                                alt={item.agentName}
-                                                                className="w-6 h-6 rounded-full object-cover"
-                                                            />
-                                                        )}
-                                                        <span className="text-xs text-gray-400 truncate">{item.agentName}</span>
-                                                    </div>
-                                                </div>
+                                            {/* Specs */}
+                                            <div style={{ fontSize: 11, color: '#9DA0A6', display: 'flex', gap: 8, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 8, marginTop: 8, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                <span>{item.beds} Bed{item.beds !== 1 ? 's' : ''}</span>
+                                                <span>•</span>
+                                                <span>{item.baths} Bath{item.baths !== 1 ? 's' : ''}</span>
                                             </div>
                                         </div>
+
+                                        <style>{`
+                                            .group { transform: translateY(0); }
+                                            .group:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); border-color: rgba(201,162,77,0.3); }
+                                        `}</style>
                                     </div>
                                 ))}
                             </div>
