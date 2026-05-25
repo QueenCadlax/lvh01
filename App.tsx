@@ -2499,77 +2499,85 @@ const DirectoryView = ({ navigate, favorites, toggleFavorite, businesses, initia
                         <div className="h-px bg-gradient-to-r from-yellow-400/40 via-yellow-400/20 to-transparent mt-6"></div>
                     </div>
                     
-                    {/* Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {/* Cards Grid - Consistent sizing and spacing */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {/* Card 1: Kuka Café */}
-                        <div className="group bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/10 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_kuka_cafe')}>
-                            <div className="relative h-40 overflow-hidden bg-gray-900">
-                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&h=500&fit=crop" alt="Kuka Café" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-2.5 py-1 rounded-full">Elite</div>
+                        <div className="group rounded-2xl shadow-lg overflow-hidden h-full flex flex-col bg-[#0a0a0a] border border-white/10 hover:border-yellow-400/50 hover:shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_kuka_cafe')}>
+                            <div className="relative w-full h-56 overflow-hidden bg-gray-900 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&h=500&fit=crop" alt="Kuka Café" className="w-full h-56 object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-t-2xl"></div>
+                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1.5 rounded-full">Elite</div>
                             </div>
-                            <div className="p-4 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
-                                <h3 className="text-white font-bold text-base mb-1 group-hover:text-yellow-400 transition-colors">Kuka Café</h3>
-                                <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
-                                    <span>📍 Hazyview</span>
-                                    <span className="text-yellow-400 font-semibold">⭐ 4.8</span>
+                            <div className="p-5 space-y-3 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] flex flex-col flex-grow">
+                                <div>
+                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-2 group-hover:text-yellow-400 transition-colors line-clamp-2">Kuka Café</h3>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="text-base md:text-lg text-gray-300">📍 Hazyview</span>
+                                        <span className="text-base md:text-lg text-yellow-400 font-semibold">⭐ 4.8</span>
+                                    </div>
                                 </div>
-                                <p className="text-gray-400 text-xs line-clamp-1 mb-3">Cocktails, coffee & cuisine</p>
-                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-bold py-1.5 rounded transition-all duration-300">Explore</button>
+                                <p className="text-gray-400 text-base md:text-lg line-clamp-2 flex-grow">Cocktails, coffee & cuisine</p>
+                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-base font-medium py-3 rounded-lg transition-all duration-300 font-bold">Explore</button>
                             </div>
                         </div>
 
                         {/* Card 2: Blue Moon Bistro */}
-                        <div className="group bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/10 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_blue_moon')}>
-                            <div className="relative h-40 overflow-hidden bg-gray-900">
-                                <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=500&fit=crop" alt="Blue Moon Bistro" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-2.5 py-1 rounded-full">Elite</div>
+                        <div className="group rounded-2xl shadow-lg overflow-hidden h-full flex flex-col bg-[#0a0a0a] border border-white/10 hover:border-yellow-400/50 hover:shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_blue_moon')}>
+                            <div className="relative w-full h-56 overflow-hidden bg-gray-900 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=500&fit=crop" alt="Blue Moon Bistro" className="w-full h-56 object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-t-2xl"></div>
+                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1.5 rounded-full">Elite</div>
                             </div>
-                            <div className="p-4 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
-                                <h3 className="text-white font-bold text-base mb-1 group-hover:text-yellow-400 transition-colors">Blue Moon Bistro</h3>
-                                <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
-                                    <span>📍 Mbombela</span>
-                                    <span className="text-yellow-400 font-semibold">⭐ 4.9</span>
+                            <div className="p-5 space-y-3 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] flex flex-col flex-grow">
+                                <div>
+                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-2 group-hover:text-yellow-400 transition-colors line-clamp-2">Blue Moon Bistro</h3>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="text-base md:text-lg text-gray-300">📍 Mbombela</span>
+                                        <span className="text-base md:text-lg text-yellow-400 font-semibold">⭐ 4.9</span>
+                                    </div>
                                 </div>
-                                <p className="text-gray-400 text-xs line-clamp-1 mb-3">Fine dining with Lowveld views</p>
-                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-bold py-1.5 rounded transition-all duration-300">Explore</button>
+                                <p className="text-gray-400 text-base md:text-lg line-clamp-2 flex-grow">Fine dining with Lowveld views</p>
+                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-base font-medium py-3 rounded-lg transition-all duration-300 font-bold">Explore</button>
                             </div>
                         </div>
 
                         {/* Card 3: Veranda Fine Dining */}
-                        <div className="group bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/10 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_veranda')}>
-                            <div className="relative h-40 overflow-hidden bg-gray-900">
-                                <img src="https://images.unsplash.com/photo-1552566626-52f8b29e368c?w=500&h=500&fit=crop" alt="Veranda Fine Dining" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-2.5 py-1 rounded-full">Elite</div>
+                        <div className="group rounded-2xl shadow-lg overflow-hidden h-full flex flex-col bg-[#0a0a0a] border border-white/10 hover:border-yellow-400/50 hover:shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_veranda')}>
+                            <div className="relative w-full h-56 overflow-hidden bg-gray-900 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1552566626-52f8b29e368c?w=500&h=500&fit=crop" alt="Veranda Fine Dining" className="w-full h-56 object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-t-2xl"></div>
+                                <div className="absolute top-3 right-3 bg-yellow-400 text-black text-xs font-bold px-3 py-1.5 rounded-full">Elite</div>
                             </div>
-                            <div className="p-4 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]">
-                                <h3 className="text-white font-bold text-base mb-1 group-hover:text-yellow-400 transition-colors">Veranda Fine Dining</h3>
-                                <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
-                                    <span>📍 Mbombela</span>
-                                    <span className="text-yellow-400 font-semibold">⭐ 4.9</span>
+                            <div className="p-5 space-y-3 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] flex flex-col flex-grow">
+                                <div>
+                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-2 group-hover:text-yellow-400 transition-colors line-clamp-2">Veranda Fine Dining</h3>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="text-base md:text-lg text-gray-300">📍 Mbombela</span>
+                                        <span className="text-base md:text-lg text-yellow-400 font-semibold">⭐ 4.9</span>
+                                    </div>
                                 </div>
-                                <p className="text-gray-400 text-xs line-clamp-1 mb-3">Modern gastronomy & curated wines</p>
-                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-bold py-1.5 rounded transition-all duration-300">Explore</button>
+                                <p className="text-gray-400 text-base md:text-lg line-clamp-2 flex-grow">Modern gastronomy & curated wines</p>
+                                <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black text-base font-medium py-3 rounded-lg transition-all duration-300 font-bold">Explore</button>
                             </div>
                         </div>
 
                         {/* Card 4: The Gold Plate - Platinum */}
-                        <div className="group bg-[#0a0a0a] border border-purple-500/40 rounded-lg overflow-hidden hover:border-purple-400/70 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_gold_plate')}>
-                            <div className="relative h-40 overflow-hidden bg-gray-900">
-                                <img src="https://images.unsplash.com/photo-1504674900152-b8b29e94345e?w=500&h=500&fit=crop" alt="The Gold Plate" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent"></div>
-                                <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">⭐ Platinum</div>
+                        <div className="group rounded-2xl shadow-lg overflow-hidden h-full flex flex-col bg-[#0a0a0a] border border-purple-500/40 hover:border-purple-400/70 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer" onClick={() => navigate('business-detail', undefined, 'b_gold_plate')}>
+                            <div className="relative w-full h-56 overflow-hidden bg-gray-900 flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1504674900152-b8b29e94345e?w=500&h=500&fit=crop" alt="The Gold Plate" className="w-full h-56 object-cover rounded-t-2xl group-hover:scale-110 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent rounded-t-2xl"></div>
+                                <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">⭐ Platinum</div>
                             </div>
-                            <div className="p-4 bg-gradient-to-b from-[#1a0f2e] to-[#0a0a0a]">
-                                <h3 className="text-white font-bold text-base mb-1 group-hover:text-purple-300 transition-colors">The Gold Plate</h3>
-                                <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
-                                    <span>📍 White River</span>
-                                    <span className="text-purple-300 font-semibold">⭐ 5.0</span>
+                            <div className="p-5 space-y-3 bg-gradient-to-b from-[#1a0f2e] to-[#0a0a0a] flex flex-col flex-grow">
+                                <div>
+                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-2 group-hover:text-purple-300 transition-colors line-clamp-2">The Gold Plate</h3>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="text-base md:text-lg text-gray-300">📍 White River</span>
+                                        <span className="text-base md:text-lg text-purple-300 font-semibold">⭐ 5.0</span>
+                                    </div>
                                 </div>
-                                <p className="text-gray-400 text-xs line-clamp-1 mb-3">Bespoke tasting menus & wines</p>
-                                <button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white text-xs font-bold py-1.5 rounded transition-all duration-300">Explore</button>
+                                <p className="text-gray-400 text-base md:text-lg line-clamp-2 flex-grow">Bespoke tasting menus & wines</p>
+                                <button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white text-base font-medium py-3 rounded-lg transition-all duration-300 font-bold">Explore</button>
                             </div>
                         </div>
                     </div>
@@ -4066,18 +4074,18 @@ const HomeView = ({ navigate, favorites, toggleFavorite, businesses, activeArea,
         <div className="w-full">
             <style>{`@keyframes slowFloat { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } } .animate-slow-float { animation: slowFloat 14s ease-in-out infinite; }`}</style>
       <style>{`@keyframes wave { 0%, 100% { transform: translateY(0); color: inherit; } 50% { transform: translateY(-10px); color: #E3B92C; } }`}</style>
-                        <section className="relative h-[56vh] min-h-[320px] flex items-center justify-center overflow-hidden bg-black">
+                        <section className="relative min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-black">
                                 <div className="absolute inset-0 z-0">
                                         <img src={heroSlides[currentSlide].url} className="w-full h-full object-cover grayscale-[10%] blur-sm opacity-30" alt="Hero" />
                                         <div className="absolute inset-0 bg-gradient-to-b from-black/75 to-black/95 pointer-events-none"></div>
                                 </div>
-                                <div className="relative z-10 container mx-auto px-4 text-center">
-                                        <div className="max-w-4xl mx-auto">
-                                                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-white mb-4 md:mb-6 tracking-tight font-black leading-tight">Discover Mpumalanga's Most Refined Businesses</h1>
-                                                <p className="text-xs sm:text-sm md:text-base mb-6 md:mb-8 opacity-80 text-gray-200 leading-relaxed">A curated digital ecosystem connecting you to trusted brands, premium services, and exceptional experiences across the Lowveld.</p>
+                                <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20">
+                                        <div className="max-w-5xl mx-auto">
+                                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif text-white mb-3 sm:mb-4 md:mb-6 tracking-tight font-black leading-tight">Discover Mpumalanga's Most Refined Businesses</h1>
+                                                <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-6 md:mb-8 opacity-80 text-gray-200 leading-relaxed px-2 sm:px-4">A curated digital ecosystem connecting you to trusted brands, premium services, and exceptional experiences across the Lowveld.</p>
 
-                                                <div className="flex flex-col items-center justify-center gap-3 md:gap-4">
-                                                    <button onClick={() => navigate('directory')} className="bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm shadow-2xl hover:bg-gold-500 hover:text-black transition-colors duration-500">Browse the Directory</button>
+                                                <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4">
+                                                    <button onClick={() => navigate('directory')} className="bg-white text-black px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-bold uppercase tracking-wider text-xs sm:text-sm md:text-base shadow-2xl hover:bg-gold-500 hover:text-black transition-colors duration-500 w-auto">Browse the Directory</button>
                                                     <PWAInstallButton />
                                                 </div>
                                         </div>
@@ -4087,26 +4095,30 @@ const HomeView = ({ navigate, favorites, toggleFavorite, businesses, activeArea,
 
             <ActivityTicker />
             <SponsoredSection />
-            <section className="py-20 bg-[#050505] border-t border-white/5">
-              <div className="container mx-auto px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Our Standard of Trust</h2>
-                <p className="text-gray-400 text-base mb-8 max-w-2xl mx-auto">Built on trust. Designed for quality.</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-6">
-                  <div className="bg-black/60 rounded-xl p-6 flex flex-col items-center justify-center gap-3 border border-white/6">
-                    <div className="text-gold-400 font-bold uppercase tracking-widest text-sm">Verified Only</div>
-                    <p className="text-xs text-gray-400 text-center">Every listing meets our review criteria</p>
+            <section className="py-12 sm:py-16 md:py-20 bg-[#050505] border-t border-white/5">
+              <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-12 sm:mb-14 md:mb-16">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-3 sm:mb-4">Our Standard of Trust</h2>
+                    <p className="text-gray-400 text-sm sm:text-base">Built on trust. Designed for quality.</p>
                   </div>
-                  <div className="bg-black/60 rounded-xl p-6 flex flex-col items-center justify-center gap-3 border border-white/6">
-                    <div className="text-gold-400 font-bold uppercase tracking-widest text-sm">One Ecosystem</div>
-                    <p className="text-xs text-gray-400 text-center">Discover, shop, book, and engage in one place</p>
-                  </div>
-                  <div className="bg-black/60 rounded-xl p-6 flex flex-col items-center justify-center gap-3 border border-white/6">
-                    <div className="text-gold-400 font-bold uppercase tracking-widest text-sm">AI Concierge</div>
-                    <p className="text-xs text-gray-400 text-center">Smart recommendations tailored to you</p>
-                  </div>
-                  <div className="bg-black/60 rounded-xl p-6 flex flex-col items-center justify-center gap-3 border border-white/6">
-                    <div className="text-gold-400 font-bold uppercase tracking-widest text-sm">Trusted by Locals</div>
-                    <p className="text-xs text-gray-400 text-center">Built for the Lowveld, trusted by those who live here</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+                    <div className="bg-black/60 rounded-lg sm:rounded-xl p-5 sm:p-6 flex flex-col items-center justify-center gap-3 border border-white/6 hover:border-gold-500/20 transition-colors">
+                      <div className="text-gold-400 font-bold uppercase tracking-widest text-xs sm:text-sm">Verified Only</div>
+                      <p className="text-xs sm:text-sm text-gray-400 text-center">Every listing meets our review criteria</p>
+                    </div>
+                    <div className="bg-black/60 rounded-lg sm:rounded-xl p-5 sm:p-6 flex flex-col items-center justify-center gap-3 border border-white/6 hover:border-gold-500/20 transition-colors">
+                      <div className="text-gold-400 font-bold uppercase tracking-widest text-xs sm:text-sm">One Ecosystem</div>
+                      <p className="text-xs sm:text-sm text-gray-400 text-center">Discover, shop, book, and engage in one place</p>
+                    </div>
+                    <div className="bg-black/60 rounded-lg sm:rounded-xl p-5 sm:p-6 flex flex-col items-center justify-center gap-3 border border-white/6 hover:border-gold-500/20 transition-colors">
+                      <div className="text-gold-400 font-bold uppercase tracking-widest text-xs sm:text-sm">AI Concierge</div>
+                      <p className="text-xs sm:text-sm text-gray-400 text-center">Smart recommendations tailored to you</p>
+                    </div>
+                    <div className="bg-black/60 rounded-lg sm:rounded-xl p-5 sm:p-6 flex flex-col items-center justify-center gap-3 border border-white/6 hover:border-gold-500/20 transition-colors">
+                      <div className="text-gold-400 font-bold uppercase tracking-widest text-xs sm:text-sm">Trusted by Locals</div>
+                      <p className="text-xs sm:text-sm text-gray-400 text-center">Built for the Lowveld, trusted by those who live here</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -5066,16 +5078,16 @@ function App() {
   };
 
     return (
-        <div className="min-h-screen bg-[#050505] text-gray-100 font-sans">
+        <div className="w-full min-h-screen bg-[#050505] text-gray-100 font-sans overflow-x-hidden">
             {/* NAVBAR */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/5">
-                <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
                         {/* Logo & Brand */}
-                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => handleNavigate('home')}>
-                                <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-black">
+                        <div className="flex items-center gap-2 cursor-pointer flex-shrink-0" onClick={() => handleNavigate('home')}>
+                                <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center font-serif font-bold text-black flex-shrink-0">
                                   LH
                                 </div>
-                                <h1 className="text-base font-serif tracking-wide uppercase">LOWVELD<span className="text-gold-500">HUB</span></h1>
+                                <h1 className="text-sm sm:text-base font-serif tracking-wide uppercase hidden sm:block whitespace-nowrap">LOWVELD<span className="text-gold-500">HUB</span></h1>
                         </div>
             
                         {/* Desktop Navigation */}
@@ -5158,7 +5170,7 @@ function App() {
         </div>
       )}
 
-      <main>{renderView()}</main>
+      <main className="pt-16 w-full">{renderView()}</main>
             {/* Slide-over panel for Enquiry / Booking */}
             {isPanelOpen && panelBusinessId && (
                 <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-end md:justify-end">

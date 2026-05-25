@@ -38,6 +38,24 @@ export const clinicsSpecialists: Business[] = [
     isElite: true,
     tags: ['Comprehensive', 'Telemedicine', 'Preventive Care', 'Specialists', 'Personalized'],
   },
+  {
+    id: 'cs_003',
+    name: 'Dr. Musa Godfrey Nhubunga',
+    category: Category.HealthAndMedical,
+    subcategory: 'Clinics & Specialists',
+    tier: ListingTier.Premium,
+    location: 'Lydenburg',
+    rating: 4.8,
+    reviewCount: 187,
+    description: 'General Practitioner offering comprehensive care including medical services, psychological services, physiotherapy, and dental services. Address: 55-1 Kantoor Street, Lydenburg CBD, Mpumalanga, 1120. P.O. Box 4425, Lydenburg, 1120.',
+    image: 'https://images.unsplash.com/photo-1576091160550-112173f31c74?w=500&h=400&fit=crop',
+    phone: '+27 13 235 0038',
+    email: 'musanhubunga@yahoo.com',
+    openingHours: 'Mon-Fri: 09:00 - 19:00, Weekends: 09:00 - 17:00',
+    subscriptionDuration: SubscriptionDuration.TwelveMonths,
+    isFeatured: true,
+    tags: ['General Practitioner', 'Medical Services', 'Psychology', 'Physiotherapy', 'Dental', 'Lydenburg', 'Multi-Specialty'],
+  },
 ];
 
 // DENTISTS

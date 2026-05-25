@@ -141,11 +141,11 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                     <section className="space-y-6 py-16 text-center">
                         <div className="space-y-4">
                             <h1 className="text-4xl md:text-5xl font-light tracking-tight text-white leading-tight" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '300', letterSpacing: '-0.02em' }}>
-                                Join Mpumalanga's<br />Trusted Business Network
+                                Join Mpumalanga's Business Growth Platform
                             </h1>
                         </div>
                         <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto font-light leading-relaxed" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '300' }}>
-                            List your business on LowveldHub and reach discerning customers. Every listing is reviewed and verified to maintain quality and trust.
+                            We don't just list your business — we actively market it through premium listings, social media promotion, and branded video exposure.
                         </p>
                         <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <a 
@@ -196,6 +196,58 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                         </div>
                     </section>
 
+                    {/* MORE THAN A DIRECTORY - PROMOTION SECTION */}
+                    <section className="py-16 border-t border-white/10">
+                        <div className="space-y-10">
+                            <div className="text-center space-y-2">
+                                <h2 className="text-3xl md:text-4xl font-light text-white leading-tight" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '300', letterSpacing: '-0.02em' }}>
+                                    More Than a Directory — We Promote Your Business
+                                </h2>
+                                <p className="text-gray-400 text-sm font-light" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '300' }}>
+                                    Active marketing exposure across multiple channels
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="border border-gold-500/20 rounded-lg p-6 bg-gold-500/3 space-y-3">
+                                    <h3 className="text-lg font-light text-gold-300" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
+                                        Lowveld Hub Spotlight
+                                    </h3>
+                                    <p className="text-gray-300 text-sm font-light leading-relaxed">
+                                        Featured business profiles showcased on our homepage and across marketing channels.
+                                    </p>
+                                </div>
+
+                                <div className="border border-gold-500/20 rounded-lg p-6 bg-gold-500/3 space-y-3">
+                                    <h3 className="text-lg font-light text-gold-300" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
+                                        Lowveld Hub Eats
+                                    </h3>
+                                    <p className="text-gray-300 text-sm font-light leading-relaxed">
+                                        Premium restaurant and dining venue listings with dedicated promotion and community features.
+                                    </p>
+                                </div>
+
+                                <div className="border border-gold-500/20 rounded-lg p-6 bg-gold-500/3 space-y-3">
+                                    <h3 className="text-lg font-light text-gold-300" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
+                                        Social Media Promotion
+                                    </h3>
+                                    <p className="text-gray-300 text-sm font-light leading-relaxed">
+                                        Regular features on our Instagram, Facebook, and social channels reaching thousands of engaged followers.
+                                    </p>
+                                </div>
+
+                                <div className="border border-gold-500/20 rounded-lg p-6 bg-gold-500/3 space-y-3">
+                                    <h3 className="text-lg font-light text-gold-300" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
+                                        Branded Video Content
+                                    </h3>
+                                    <p className="text-gray-300 text-sm font-light leading-relaxed">
+                                        Professional video production and branded content creation for top-tier business listings.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* LISTING PACKAGES */}
                     <section id="packages-preview" className="py-16 border-t border-white/10">
                         <div className="space-y-10">
@@ -214,7 +266,7 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                     <div>
                                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">Essential</p>
                                         <h3 className="text-xl font-light text-white" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
-                                            Essential
+                                            Perfect for new ventures
                                         </h3>
                                     </div>
                                     <div className="space-y-1">
@@ -224,17 +276,17 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                         <p className="text-gray-400 text-xs font-light">6 Months</p>
                                     </div>
                                     <ul className="space-y-3 text-gray-300 text-xs font-light">
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Business Name</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Address</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Contact</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Images</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Professional Business Listing</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Branding & Logo Display</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Photo Gallery (up to 5)</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Full Contact Information</span></li>
                                     </ul>
                                     <a 
                                         href="mailto:info@lowveldhub.co.za"
                                         className="block w-full py-2.5 text-center rounded-lg border border-white/20 text-white font-medium hover:bg-white/5 transition-colors duration-200 text-xs"
                                         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
                                     >
-                                        Apply – Essential
+                                        Get Started
                                     </a>
                                 </div>
 
@@ -254,17 +306,17 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                         <p className="text-gray-400 text-xs font-light">12 Months</p>
                                     </div>
                                     <ul className="space-y-3 text-gray-300 text-xs font-light">
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>All Premium Features</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>All Essential Features</span></li>
                                         <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Priority Placement</span></li>
                                         <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>ELITE Badge</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Top Listing in Category</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>1 promotional social media feature</span></li>
                                     </ul>
                                     <a 
                                         href="mailto:info@lowveldhub.co.za"
                                         className="block w-full py-2.5 text-center rounded-lg bg-gold-500 text-black font-semibold hover:bg-gold-400 transition-colors duration-200 text-xs"
                                         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
                                     >
-                                        Apply – Professional
+                                        Choose Plan
                                     </a>
                                 </div>
 
@@ -273,7 +325,7 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                     <div>
                                         <p className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-2">Platinum</p>
                                         <h3 className="text-xl font-light text-purple-300" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '400' }}>
-                                            Platinum
+                                            Signature
                                         </h3>
                                     </div>
                                     <div className="space-y-1">
@@ -284,16 +336,16 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                                     </div>
                                     <ul className="space-y-3 text-gray-300 text-xs font-light">
                                         <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>All Elite Features</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Homepage Spotlight</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Newsletter Feature</span></li>
-                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>AI Spotlight</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Professional ad shoot</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Featured on Lowveld Spotlight</span></li>
+                                        <li className="flex gap-3"><Check size={14} className="text-gold-400 flex-shrink-0 mt-0.5" /> <span>Priority social promotion</span></li>
                                     </ul>
                                     <a 
                                         href="mailto:info@lowveldhub.co.za"
                                         className="block w-full py-2.5 text-center rounded-lg border border-purple-500/40 text-white font-medium hover:bg-purple-500/10 transition-colors duration-200 text-xs"
                                         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
                                     >
-                                        Request Review
+                                        Contact Sales
                                     </a>
                                 </div>
                             </div>
@@ -468,7 +520,7 @@ const PremiumAddBusinessView = ({ navigate, onAddBusiness, handleOpenAuth }: { n
                     {/* FOOTER MESSAGE */}
                     <section className="py-12 border-t border-white/10 text-center">
                         <p className="text-xs text-gray-400 font-light leading-relaxed max-w-2xl mx-auto" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: '300' }}>
-                            LowveldHub is a curated ecosystem, not a directory. We maintain rigorous standards for quality, presentation, and customer experience. Only exceptional businesses are invited to join.
+                            All plans include directory visibility, verification review, and customer discovery. Higher tiers include marketing exposure and premium promotion opportunities.
                         </p>
                     </section>
                 </div>
