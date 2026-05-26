@@ -173,7 +173,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
               <h2 className="text-2xl font-bold">Trending This Week</h2>
               <span className="text-xs text-gray-400 ml-2">Most reviewed</span>
             </div>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {trending.map(e => (
                 <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
               ))}

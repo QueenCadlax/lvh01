@@ -3334,11 +3334,11 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                         {/* Featured Properties Section - CURATED ONLY */}
                         {filteredProperties.some(p => p.isFeatured) && (
                             <div className="mb-16">
-                        <h2 className="text-2xl font-serif text-gold-400 mb-1">Featured Properties</h2>
+                        <h2 className="text-2xl font-serif text-gold-400 mb-1"><span style={{ color: '#C9A24D' }}>Featured</span> Properties</h2>
                                 <p className="text-sm text-gray-400 mb-8">Curated selection of exceptional properties</p>
-                                <div className="grid grid-cols-4 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {filteredProperties.filter(p => p.isFeatured).slice(0, 4).map(item => (
-                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.03)', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
                                             
                                             {/* IMAGE SECTION - 65% */}
                                             <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
@@ -3387,12 +3387,12 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                                                     </div>
 
                                                     {/* Title */}
-                                                    <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#FFFFFF', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
+                                                    <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#C9A24D', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
                                                         {item.title}
                                                     </h3>
 
                                                     {/* Price */}
-                                                    <div style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                    <div style={{ fontSize: 14, fontWeight: 700, color: '#E0C36A', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                                                         {item.price}
                                                     </div>
                                                 </div>
@@ -3417,11 +3417,11 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
 
                         {/* All Properties Section */}
                         <div>
-                            <h2 className="text-2xl font-serif text-white mb-1">All Properties</h2>
+                            <h2 className="text-2xl font-serif text-white mb-1"><span style={{ color: '#C9A24D' }}>All</span> Properties</h2>
                             <p className="text-sm text-gray-400 mb-8">{filteredProperties.length} available</p>
-                            <div className="grid grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                 {filteredProperties.slice(0, 4).map(item => (
-                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.03)', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
                                         
                                         {/* IMAGE SECTION - 65% */}
                                         <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
@@ -3463,12 +3463,12 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                                                 </div>
 
                                                 {/* Title */}
-                                                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#FFFFFF', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
+                                                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#C9A24D', lineHeight: '1.3', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: 6, fontFamily: "'Georgia', 'Garamond', serif" }}>
                                                     {item.title}
                                                 </h3>
 
                                                 {/* Price */}
-                                                <div style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                                                <div style={{ fontSize: 14, fontWeight: 700, color: '#E0C36A', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                                                     {item.price}
                                                 </div>
                                             </div>
