@@ -173,9 +173,11 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
               <h2 className="text-2xl font-bold">Trending This Week</h2>
               <span className="text-xs text-gray-400 ml-2">Most reviewed</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {trending.map(e => (
-                <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
+                <div key={e.id} className="w-full">
+                  <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
+                </div>
               ))}
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent mt-8" />
@@ -190,9 +192,11 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
               <h2 className="text-2xl font-bold">Shisanyama Near You</h2>
               <span className="text-xs text-gray-400 ml-2">Local favorite</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {shisanyama.map(e => (
-                <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
+                <div key={e.id} className="w-full">
+                  <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
+                </div>
               ))}
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent mt-8" />
@@ -203,9 +207,11 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
         <section>
           <h2 className="text-2xl font-bold mb-6">All Restaurants <span className="text-sm text-gray-400">({filtered.length} {searchTerm ? 'search ' : ''}results)</span></h2>
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {filtered.map(e => (
-                <EateryCard key={e.id} eatery={e} onView={handleView} onContact={handleContact} />
+                <div key={e.id} className="w-full">
+                  <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
+                </div>
               ))}
             </div>
           ) : (

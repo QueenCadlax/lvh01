@@ -3336,9 +3336,9 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                             <div className="mb-16">
                         <h2 className="text-2xl font-serif text-gold-400 mb-1"><span style={{ color: '#C9A24D' }}>Featured</span> Properties</h2>
                                 <p className="text-sm text-gray-400 mb-8">Curated selection of exceptional properties</p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
                                     {filteredProperties.filter(p => p.isFeatured).slice(0, 4).map(item => (
-                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
                                             
                                             {/* IMAGE SECTION - 65% */}
                                             <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
@@ -3419,9 +3419,9 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                         <div>
                             <h2 className="text-2xl font-serif text-white mb-1"><span style={{ color: '#C9A24D' }}>All</span> Properties</h2>
                             <p className="text-sm text-gray-400 mb-8">{filteredProperties.length} available</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
                                 {filteredProperties.slice(0, 4).map(item => (
-                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
                                         
                                         {/* IMAGE SECTION - 65% */}
                                         <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
