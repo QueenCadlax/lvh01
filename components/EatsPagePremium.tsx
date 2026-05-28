@@ -175,7 +175,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {trending.map(e => (
-                <div key={e.id} className="w-full">
+                <div key={e.id} className="w-full" style={{ minWidth: 0 }}>
                   <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
                 </div>
               ))}
@@ -194,7 +194,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {shisanyama.map(e => (
-                <div key={e.id} className="w-full">
+                <div key={e.id} className="w-full" style={{ minWidth: 0 }}>
                   <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
                 </div>
               ))}
@@ -209,7 +209,7 @@ const EatsPagePremium: React.FC<{ navigate: (view: string, category?: string, id
           {filtered.length > 0 ? (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
               {filtered.map(e => (
-                <div key={e.id} className="w-full">
+                <div key={e.id} className="w-full" style={{ minWidth: 0 }}>
                   <EateryCard eatery={e} onView={handleView} onContact={handleContact} />
                 </div>
               ))}

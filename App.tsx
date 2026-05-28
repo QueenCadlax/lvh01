@@ -3338,7 +3338,7 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                                 <p className="text-sm text-gray-400 mb-8">Curated selection of exceptional properties</p>
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
                                     {filteredProperties.filter(p => p.isFeatured).slice(0, 4).map(item => (
-                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                        <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0 }}>
                                             
                                             {/* IMAGE SECTION - 65% */}
                                             <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
@@ -3421,7 +3421,7 @@ const RealEstateView = ({ navigate, favorites, toggleFavorite }: any) => {
                             <p className="text-sm text-gray-400 mb-8">{filteredProperties.length} available</p>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
                                 {filteredProperties.slice(0, 4).map(item => (
-                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                    <div key={item.id} onClick={() => navigate('property-detail', undefined, item.id)} className="group cursor-pointer rounded-xl overflow-hidden w-full" style={{ background: '#000000', border: '2px solid #C9A24D', transition: 'transform 220ms ease, box-shadow 220ms ease, border-color 180ms ease, box-shadow 0 0 20px rgba(201,162,77,0.3)', display: 'flex', flexDirection: 'column', height: '100%', minWidth: 0 }}>
                                         
                                         {/* IMAGE SECTION - 65% */}
                                         <div style={{ height: '65%', position: 'relative', overflow: 'hidden' }}>
